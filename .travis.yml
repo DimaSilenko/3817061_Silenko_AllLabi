@@ -9,6 +9,6 @@ script:
   - cmake ../3817061_Silenko_AllLabi
   - make -j
   - cd ./bin/
-  - ./AllLibi
+  - ./AllLabi
 notifications:
   email: false
