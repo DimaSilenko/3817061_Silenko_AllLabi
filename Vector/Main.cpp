@@ -1,42 +1,68 @@
 #include "Vector.h"
+#include <iostream>
+
+using namespace std;
 
 void main()
 {
-	float a[3] = { 1.1, 2.4, 3.4 };
-	float b[3] = { 0.55, 1.2, 1.7 };
-	int c[3] = { 1, 2, 3 };
-	int d[3] = { 3, 2, 1 };
+	setlocale(LC_ALL, "Rus");
+	double n;
+	TVector<int> ivec1;
+	int vec1[3] = { 2, 4, 6 };
+	TVector<int> ivec2(vec1, 3);
+	cout << "Стандартный целочисленный вектор:\n" << ivec2;
+	TVector<int> ivec3(ivec2);
+met1:
 
-	TVector<float> A(a, 3);
-	TVector<float> B(b, 3);
-	TVector<int> C(c, 3);
-	TVector<int> D(d, 3);
-	TVector<int> Sum;
-	TVector<float> Razn;
-	TVector<float> Umn;
-	TVector<float> Del;
+	cout << "Введите целочисленный вектор и с базовым вектором произойдут некоторые арифметические операции\n";
+	cin >> ivec1;
+	try
+	{
+		cout << "Сложение:\n" << ivec3 + ivec1 << "\n";
+	}
+	catch (int err)
+	{
+		if (err == 1)
+		{
+			cout << "Несовпадение длин векторов, выполнить операцию невозможно\n";
+			goto met1;
+		}
+	}
+	cout << "Вычитание:\n" << ivec3 - ivec1 << "\n";
+	cout << "Умножение скалярное:\n" << ivec3 * ivec1 << "\n";
+	cout << "Введите число и посмотрите на аналогичный результат\n";
+	cin >> n;
+	cout << "Умножение на число:\n" << ivec3 * n << "\n";
+	cout << "Деление на число:\n" << ivec3 / n << "\n";
 
+	float fvec[3] = { 1.1, 2.4, 3.4 };
+	TVector<float> fvec1(fvec, 3);
+	cout << "Стандартный вещественный вектор:\n" << fvec1;
+	TVector<float> fvec2;
 
-	std::cout << A << "\n" << B << "\n" << C << "\n" << D << "\n";
-	Sum = C + D;
-	Razn = A - B;
-	Umn = B * 2;
-	Del = A / 2;
-	float skal = A * B;
-	std::cout << Sum << Razn << Umn << Del << skal << "\n";
+met2:
+	cout << "Введите вещественный вектор\n";
+	cin >> fvec2;
+	try
+	{
+		TVector<float> sum;
+		sum = fvec1 + fvec2;
+		cout << "Сумма двух вещественных векторов:\n" << sum << "\n";
+	}
+	catch (int err)
+	{
+		if (err == 1)
+		{
+			cout << "Несовпадение длин векторов, выполнить операцию невозможно\n";
+			goto met2;
+		}
+	}
+	TVector<float> fvec3;
+	cout << "Введите вещественный вектор\n";
+	cin >> fvec3;
+	cout << "Его длина = " << fvec3.Lenght(fvec3) << "\n";
+	fvec3 = fvec3.Izm();
+	cout << "Теперь это вектор:\n" << fvec3;
+	fvec3.Del();
 
-	A.Transform(5);
-	std::cout << A.GetDlina() << "\n";//
-
-	C[1] = 0;
-	std::cout << C << "\n";
-	C[1] = 1;
-
-	D.Sort();
-	std::cout << D << "\n";
-
-	B.Norm();
-	std::cout << B << "\n";
-
-	std::cout << A.OneNorm() << "\n" << A.TwoNorm() << "\n" << A.InfNorm() << "\n" << A.GelderNorm(3) << "\n";
 }
