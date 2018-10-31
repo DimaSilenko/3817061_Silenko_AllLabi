@@ -5,6 +5,7 @@ project(${PROJECT_NAME}) # Название проекта
 
 set (Vector Vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
+set (VectorTest VectorTest)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
@@ -12,7 +13,9 @@ if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компиля
 endif()
 
 
-include_directories(${CMAKE_CURREN_SOURCE_DIR}/ VectorLib)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ VectorLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
 add_subdirectory(Vector)
 add_subdirectory(VectorLib)
+add_subdirectory(VectorTest)
+add_subdirectory(gtest)

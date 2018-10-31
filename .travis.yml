@@ -8,6 +8,7 @@ before_script:
 script:
   - cmake ../3817061_Silenko_AllLabi
   - make -j
-  - ./Vector
+  - ./Vector/Vector
+  - ./VectorTest/VectorTest
 notifications:
   email: false
