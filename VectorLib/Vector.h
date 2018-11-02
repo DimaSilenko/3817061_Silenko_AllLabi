@@ -25,11 +25,11 @@ public:
 	TVector<T>& operator =(TVector<T> &A);
 	T& operator[] (int I);
 
-	template <class T>
-	friend std::istream& operator >> (std::istream &A, TVector<T> &B);
+	template <class T1>
+	friend std::istream& operator >> (std::istream &A, TVector<T1> &B);
 
-	template <class T>
-	friend std::ostream& operator << (std::ostream &A, TVector<T> &B);
+	template <class T1>
+	friend std::ostream& operator << (std::ostream &A, TVector<T1> &B);
 
 };
 
@@ -286,12 +286,12 @@ T& TVector<T> ::operator[] (int I)
 }
 
 //---------------------------------------------------------------------------------------
-template <class T>
-std::istream& operator >> (std::istream &A, TVector<T> &B)
+template <class T1>
+std::istream& operator >> (std::istream &A, TVector<T1> &B)
 {
 	cout << "¬ведите длину\n";
 	A >> B.dlina;
-	B.vector = new T[B.dlina];
+	B.vector = new T1[B.dlina];
 	cout << "¬ведите сам вектор\n";
 	for (int i = 0; i < B.dlina; i++)
 	{
@@ -301,8 +301,8 @@ std::istream& operator >> (std::istream &A, TVector<T> &B)
 }
 
 //---------------------------------------------------------------------------------------
-template <class T>
-std::ostream& operator << (std::ostream &A, TVector<T> &B)
+template <class T1>
+std::ostream& operator << (std::ostream &A, TVector<T1> &B)
 {
 	cout << "ƒлина вектора: ";
 	A << B.dlina << "\n";
