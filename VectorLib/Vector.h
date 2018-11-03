@@ -14,7 +14,7 @@ public:
 	~TVector();
 
 	int Lenght(TVector<T> &A);
-	TVector<T> TVector<T> ::Izm();
+	TVector<T> TVector ::Izm();
 	void TVector<T> ::Del();
 
 	TVector<T> operator +(TVector<T> &A);
