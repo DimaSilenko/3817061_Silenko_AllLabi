@@ -14,8 +14,8 @@ public:
 	~TVector();
 
 	int Lenght(TVector<T> &A);
-	TVector<T> TVector ::Izm();
-	void TVector<T> ::Del();
+	TVector<T> Izm();
+	void  Del();
 
 	TVector<T> operator +(TVector<T> &A);
 	TVector<T> operator -(TVector<T> &A);
@@ -89,7 +89,7 @@ int TVector<T> ::Lenght(TVector<T> &A)
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TVector<T> TVector<T> ::Izm()
+TVector<T> TVector<T>::Izm()
 {
 	int l, n, g;
 	TVector<T> S;
@@ -139,7 +139,7 @@ TVector<T> TVector<T> ::Izm()
 
 //---------------------------------------------------------------------------------------
 template <class T>
-void TVector<T> ::Del()
+void TVector<T>::Del()
 {
 	vector = 0;
 	dlina = 0;
