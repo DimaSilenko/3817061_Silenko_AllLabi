@@ -25,6 +25,7 @@ public:
 	TVector<T> operator *(double um);
 	TVector<T> operator /(double del);
 	TVector<T>& operator =(TVector<T> &A);
+	
 	T& operator[] (int I);
 
 	template <class T1>
