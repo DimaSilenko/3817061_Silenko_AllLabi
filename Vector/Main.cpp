@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void main()
+int main()
 {
 	setlocale(LC_ALL, "Rus");
 	double n;
@@ -71,4 +71,5 @@ met2:
 	cout << "Теперь это вектор:\n" << fvec3;
 	fvec3.Del();
 
+	return 0;
 }
