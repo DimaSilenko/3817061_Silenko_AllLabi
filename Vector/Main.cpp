@@ -14,7 +14,6 @@ int main()
 	TVector<int> ivec3(ivec2);
 	TVector<int> temp;
 	int tmp;
-met1:
 
 	cout << "¬ведите целочисленный вектор и с базовым вектором произойдут некоторые арифметические операции\n";
 	cin >> ivec1;
@@ -28,7 +27,6 @@ met1:
 		if (err == 1)
 		{
 			cout << "Ќесовпадение длин векторов, выполнить операцию невозможно\n";
-			goto met1;
 		}
 	}
 	temp = ivec3 - ivec1;
@@ -46,7 +44,7 @@ met1:
 	TVector<float> fvec1(fvec, 3);
 	cout << "—тандартный вещественный вектор:\n" << fvec1;
 	TVector<float> fvec2;
-met2:
+
 	cout << "¬ведите вещественный вектор\n";
 	cin >> fvec2;
 	try
@@ -60,7 +58,6 @@ met2:
 		if (err == 1)
 		{
 			cout << "Ќесовпадение длин векторов, выполнить операцию невозможно\n";
-			goto met2;
 		}
 	}
 	TVector<float> fvec3;
