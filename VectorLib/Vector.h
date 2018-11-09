@@ -19,6 +19,7 @@ public:
 	TVector<T> Izm();
 	void  Del();
 
+
 	TVector<T> operator +(TVector<T> &A);
 	TVector<T> operator -(TVector<T> &A);
 	T operator *(TVector<T> &A);
