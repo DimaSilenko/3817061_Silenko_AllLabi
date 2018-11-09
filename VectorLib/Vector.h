@@ -24,7 +24,7 @@ public:
 	T operator *(TVector<T> &A);
 	TVector<T> operator *(double um);
 	TVector<T> operator /(double del);
-	TVector<T>& operator =(TVector<T> &A);
+	TVector<T>& operator =(const TVector<T> &A);
 	
 	T& operator[] (int I);
 
@@ -254,7 +254,7 @@ TVector<T> TVector<T> :: operator /(double del)
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TVector<T>& TVector<T> :: operator =(TVector<T> &A)
+TVector<T>& TVector<T> :: operator =(const TVector<T> &A)
 {
 	if (this != &A)
 	{
