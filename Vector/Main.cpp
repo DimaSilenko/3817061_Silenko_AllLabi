@@ -12,18 +12,13 @@ int main()
 	TVector<int> ivec2(vec1, 3);
 	cout << "Стандартный целочисленный вектор:\n" << ivec2;
 	TVector<int> ivec3(ivec2);
-	TVector<int> temp;
+	int vec[3] = { 1, 3, 5 };
+	TVector<int> ivec(vec, 3);
 	int tmp;
-
-	while (ivec1.Lenght(ivec1) != ivec3.Lenght(ivec3))
-	{
-		cout << "Введите целочисленный вектор и с базовым вектором произойдут некоторые арифметические операции\n";
-		cin >> ivec1;
-	}
 	try
 	{
-		temp = ivec1 + ivec3;
-		cout << "Сложение:\n" << temp << "\n";
+		ivec3 = ivec2 + ivec;
+		cout << "Сложение:\n" << ivec3 << "\n";
 	}
 	catch (int err)
 	{
@@ -32,27 +27,25 @@ int main()
 			cout << "Несовпадение длин векторов, выполнить операцию невозможно\n";
 		}
 	}
-	temp = ivec3 - ivec1;
-	cout << "Вычитание:\n" << temp << "\n";
-	tmp = ivec3 * ivec1;
+	
+	ivec3 = ivec2 - ivec;
+	cout << "Вычитание:\n" << ivec3 << "\n";
+
+	tmp = ivec2 * ivec;
 	cout << "Умножение скалярное:\n" << tmp << "\n";
-	cout << "Введите число и посмотрите на аналогичный результат\n";
-	cin >> n;
-	temp = ivec3 * n;
-	cout << "Умножение на число:\n" << temp << "\n";
-	temp = ivec3 / n;
-	cout << "Деление на число:\n" << temp<< "\n";
+	cout << "Аналогичный результат с числом 5\n";
+	n = 5;
+	ivec3 = ivec2 * n;
+	cout << "Умножение на число:\n" << ivec3 << "\n";
+	ivec3 = ivec2 / n;
+	cout << "Деление на число:\n" << ivec3 << "\n";
 
 	float fvec[3] = { 1.1, 2.4, 3.4 };
 	TVector<float> fvec1(fvec, 3);
 	cout << "Стандартный вещественный вектор:\n" << fvec1;
-	TVector<float> fvec2;
+	float fvect[3] = { 2.1, 2.4, 2.5 };
+	TVector<float> fvec2(fvect, 3);
 
-	while (fvec2.Lenght(fvec2) != fvec1.Lenght(fvec1))
-	{
-		cout << "Введите вещественный вектор\n";
-		cin >> fvec2;
-	}
 	try
 	{
 		TVector<float> sum;
@@ -66,13 +59,13 @@ int main()
 			cout << "Несовпадение длин векторов, выполнить операцию невозможно\n";
 		}
 	}
-	TVector<float> fvec3;
-	cout << "Введите вещественный вектор\n";
-	cin >> fvec3;
-	cout << "Его длина = " << fvec3.Lenght(fvec3) << "\n";
-	fvec3 = fvec3.Izm();
-	cout << "Теперь это вектор:\n" << fvec3;
-	fvec3.Del();
+	//TVector<float> fvec3;
+	//cout << "Введите вещественный вектор\n";
+	//cin >> fvec3;
+	//cout << "Его длина = " << fvec3.Lenght(fvec3) << "\n";
+	//fvec3 = fvec3.Izm();
+	//cout << "Теперь это вектор:\n" << fvec3;
+	//fvec3.Del();
 
 	return 0;
 }
