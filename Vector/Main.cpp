@@ -15,8 +15,11 @@ int main()
 	TVector<int> temp;
 	int tmp;
 
-	cout << "Введите целочисленный вектор и с базовым вектором произойдут некоторые арифметические операции\n";
-	cin >> ivec1;
+	while (ivec1.Lenght(ivec1) != ivec3.Lenght(ivec3))
+	{
+		cout << "Введите целочисленный вектор и с базовым вектором произойдут некоторые арифметические операции\n";
+		cin >> ivec1;
+	}
 	try
 	{
 		temp = ivec1 + ivec3;
@@ -45,8 +48,11 @@ int main()
 	cout << "Стандартный вещественный вектор:\n" << fvec1;
 	TVector<float> fvec2;
 
-	cout << "Введите вещественный вектор\n";
-	cin >> fvec2;
+	while (fvec2.Lenght(fvec2) != fvec1.Lenght(fvec1))
+	{
+		cout << "Введите вещественный вектор\n";
+		cin >> fvec2;
+	}
 	try
 	{
 		TVector<float> sum;
