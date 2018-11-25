@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <iostream>
 
 using namespace std;
@@ -97,12 +97,12 @@ TVector<T> TVector<T>::Izm()
 {
 	int l, n, g;
 	TVector<T> S;
-	cout << "1. Åñëè õîòèòå óâåëè÷èòü äëèíó; 2. Åñëè õîòèòå óìåíüøèòü äëèííó\n";
+	cout << "1. Ð•ÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ñƒ; 2. Ð•ÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ¼ÐµÐ½ÑŒÑˆÐ¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ð½Ñƒ\n";
 	cin >> n;
 	switch (n)
 	{
 	case 1:
-		cout << "Ââåäèòå ÷èñëî, íà êîòîðîå âû õîòèòå èçâåíèòü äëèíó âåêòîðà (>0)\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¸Ð·Ð²ÐµÐ½Ð¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ñƒ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð° (>0)\n";
 		cin >> l;
 		g = dlina + l;
 		S.dlina = g;
@@ -117,7 +117,7 @@ TVector<T> TVector<T>::Izm()
 		}
 		break;
 	case 2:
-		cout << "Ââåäèòå ÷èñëî, íà êîòîðîå âû õîòèòå èçâåíèòü äëèíó âåêòîðà (>0)\n";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ð²Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¸Ð·Ð²ÐµÐ½Ð¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ñƒ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð° (>0)\n";
 		cin >> l;
 		S.dlina = dlina - l;
 		S.vector = new T[dlina - l];
@@ -127,7 +127,7 @@ TVector<T> TVector<T>::Izm()
 			S.vector[i] = vector[i];
 		}
 		break;
-	default: cout << "Íåâåðíûé ââîä\n";
+	default: cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´\n";
 	}
 
 	delete[]vector;
@@ -293,10 +293,10 @@ T& TVector<T> ::operator[] (int I)
 template <class T1>
 std::istream& operator >> (std::istream &A, TVector<T1> &B)
 {
-	cout << "Ââåäèòå äëèíó\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ\n";
 	A >> B.dlina;
 	B.vector = new T1[B.dlina];
-	cout << "Ââåäèòå ñàì âåêòîð\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ°Ð¼ Ð²ÐµÐºÑ‚Ð¾Ñ€\n";
 	for (int i = 0; i < B.dlina; i++)
 	{
 		A >> B.vector[i];
@@ -308,9 +308,9 @@ std::istream& operator >> (std::istream &A, TVector<T1> &B)
 template <class T1>
 std::ostream& operator << (std::ostream &A, TVector<T1> &B)
 {
-	cout << "Äëèíà âåêòîðà: ";
+	cout << "Ð”Ð»Ð¸Ð½Ð° Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°: ";
 	A << B.dlina << "\n";
-	cout << "Ñàì âåêòîð:\n";
+	cout << "Ð¡Ð°Ð¼ Ð²ÐµÐºÑ‚Ð¾Ñ€:\n";
 	for (int i = 0; i < B.dlina; i++)
 	{
 		A << B.vector[i] << "\n";
