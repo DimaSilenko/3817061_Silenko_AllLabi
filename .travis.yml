@@ -9,6 +9,6 @@ script:
   - cmake ../3817061_Silenko_AllLabi
   - make -j
   - ./VectorTest/VectorTest
-  -./MatrixTest/MatrixTest
+  - ./MatrixTest/MatrixTest
 notifications:
   email: false
