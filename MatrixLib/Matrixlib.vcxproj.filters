@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Лабораторные работы\Ответы\Все лабы Ира\381706_Maximova_All_Lab\MatrixLib\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Лабораторные работы\Ответы\Все лабы Ира\381706_Maximova_All_Lab\MatrixLib\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Лабораторные работы\Ответы\Все лабы Ира\381706_Maximova_All_Lab\MatrixLib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{DD5DF84F-CC1C-3709-84C6-07CCFBC77D44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B4192CCE-8025-36B6-BE49-E31A45941613}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
