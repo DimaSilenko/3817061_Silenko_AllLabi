@@ -3,9 +3,15 @@
 set(PROJECT_NAME AllLabi) #Создаем обычную локальную переменную с именем проекта
 project(${PROJECT_NAME}) # Название проекта
 
+set(ExceptionLib ExceptionLib)
+
 set (Vector Vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
 set (VectorTest VectorTest)
+
+set(Matrix Matrix)
+set(MatrixLib Matrixlib)
+set(MatrixTest MatrixTest)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
@@ -13,9 +19,17 @@ if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компиля
 endif()
 
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ExceptionLib)
+add_subdirectory(ExceptionLib)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ VectorLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
 add_subdirectory(Vector)
 add_subdirectory(VectorLib)
 add_subdirectory(VectorTest)
 add_subdirectory(gtest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MatrixLib)
+add_subdirectory(Matrix)
+add_subdirectory(MatrixLib)
+add_subdirectory(MatrixTest)

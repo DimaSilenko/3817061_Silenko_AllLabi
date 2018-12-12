@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <iostream>
+#include "ExceptionLib.h""
 
 using namespace std;
 
@@ -8,71 +9,71 @@ class TVector
 {
 protected:
 	T* vector;
-	int dlina;
+	int length;
 public:
-	TVector();
-	TVector(TVector &A);
-	TVector(T* s, int len);
-	~TVector();
+	TVector(int len = 0);
+	TVector(const TVector<T> &V);
+	virtual  ~TVector();
 
-	int Lenght(TVector<T> &A);
-	TVector<T> Izm();
-	void  Del();
+	int GetLength() const; // Размер вектора
+	virtual T& operator[](int pos); // Доступ
 
 
-	TVector<T> operator +(TVector<T> &A);
-	TVector<T> operator -(TVector<T> &A);
-	T operator *(TVector<T> &A);
-	TVector<T> operator *(double um);
-	TVector<T> operator /(double del);
-	TVector<T>& operator =(const TVector<T> &A);
-	
-	T& operator[] (int I);
+	TVector<T> operator +(const TVector<T> &vec); // сложение векторов
+	TVector<T> operator -(const TVector<T> &vec); // Вычитание векторов
+	T operator *(TVector<T> &vec); // Умножение векторов
 
-	template <class T1>
-	friend std::istream& operator >> (std::istream &A, TVector<T1> &B);
+	TVector<T> operator+(const T &vol);   // сложение с числом
+	TVector<T> operator-(const T &vol);   // вычитание числа
+	TVector<T> operator*(const T &vol);   // умножение на число
 
-	template <class T1>
-	friend std::ostream& operator << (std::ostream &A, TVector<T1> &B);
+	bool operator==(const TVector &vec) const;  // сравнение на равенство
+	bool operator!=(const TVector &vec) const;  // сравнение на неравенство
+	virtual TVector& operator=(const TVector &vec); // присваивание
+
+	template <class Type1>
+	friend istream& operator >> (istream &in, TVector<Type1> &vec);
+
+	template <class Type1>
+	friend ostream& operator << (ostream &out, const TVector<Type1> &vec);
 
 };
 
-//---------------------------------------------------------------------------------------
 template <class T>
-TVector<T>::TVector()
+TVector<T>::TVector(int len)
 {
-	vector = 0;
-	dlina = 0;
+	if (len < 0)
+		throw Exception("Error length");
+	else
+		if (len == 0)
+		{
+			length = len;
+			vector = NULL;
+		}
+		else
+		{
+			length = len;
+			vector = new T[length];
+			for (int i = 0; i < length; i++)
+				vector[i] = 0;
+		}
 }
 
-//---------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------------
 template <class T>
-TVector<T>::TVector(TVector &A)
+TVector<T>::TVector(const TVector<T> &V)
 {
-	dlina = A.dlina;
-	if (dlina != 0)
+	length = V.length;
+	if (length != 0)
 	{
-		vector = new T[dlina];
-		for (int i = 0; i < dlina; i++)
+		vector = new T[length];
+		for (int i = 0; i < length; i++)
 		{
-			vector[i] = A.vector[i];
+			vector[i] = V.vector[i];
 		}
 	}
 	else
 		vector = 0;
-
-}
-
-//---------------------------------------------------------------------------------------
-template <class T>
-TVector<T>::TVector(T* s, int len)
-{
-	dlina = len;
-	vector = new T[dlina];
-	for (int i = 0; i < dlina; i++)
-	{
-		vector[i] = s[i];
-	}
 }
 
 //---------------------------------------------------------------------------------------
@@ -86,234 +87,149 @@ TVector<T>:: ~TVector()
 
 //---------------------------------------------------------------------------------------
 template <class T>
-int TVector<T> ::Lenght(TVector<T> &A)
+int TVector<T> ::GetLength() const
 {
-	return A.dlina;
+	return length;
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TVector<T> TVector<T>::Izm()
+T& TVector<T> ::operator[] (int pos)
 {
-	int l, n, g;
-	TVector<T> S;
-	cout << "1. Если хотите увеличить длину; 2. Если хотите уменьшить длинну\n";
-	cin >> n;
-	switch (n)
-	{
-	case 1:
-		cout << "Введите число, на которое вы хотите извенить длину вектора (>0)\n";
-		cin >> l;
-		g = dlina + l;
-		S.dlina = g;
-		S.vector = new T[g];
-		for (int i = 0; i < dlina; i++)
-		{
-			S.vector[i] = vector[i];
-		}
-		for (int i = dlina; i < g; i++)
-		{
-			S.vector[i] = 0;
-		}
-		break;
-	case 2:
-		cout << "Введите число, на которое вы хотите извенить длину вектора (>0)\n";
-		cin >> l;
-		S.dlina = dlina - l;
-		S.vector = new T[dlina - l];
-		g = dlina - l;
-		for (int i = 0; i < g; i++)
-		{
-			S.vector[i] = vector[i];
-		}
-		break;
-	default: cout << "Неверный ввод\n";
-	}
-
-	delete[]vector;
-	dlina = S.dlina;
-	vector = new T[dlina];
-	for (int i = 0; i < dlina; i++)
-	{
-		vector[i] = S.vector[i];
-	}
-
-	return S;
+	if (pos >= 0 && pos < length)
+		return vector[pos];
+	throw Exception("Error index");
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-void TVector<T>::Del()
+TVector<T> TVector<T> :: operator +(const TVector<T> &vec)
 {
-	vector = 0;
-	dlina = 0;
-}
-
-//---------------------------------------------------------------------------------------
-template <class T>
-TVector<T> TVector<T> :: operator +(TVector<T> &A)
-{
-	TVector<T> S;
-	if (dlina == A.dlina)
+	if (length == vec.length)
 	{
-		if (dlina == 0)
-			S.vector = 0;
-		else
-		{
-			S.dlina = dlina;
-			S.vector = new T[dlina];
-			for (int i = 0; i < dlina; i++)
-				S.vector[i] = vector[i] + A.vector[i];
-		}
+		TVector<T> res(*this);
+		for (int i = 0; i < length; i++)
+			res[i] = (*this)[i] + vec.vector[i];
+		return res;
 	}
 	else
-		throw 1;
-	return S;
+		throw Exception("Error length operand");
+
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TVector<T> TVector<T> :: operator -(TVector<T> &A)
+TVector<T> TVector<T> :: operator -(const TVector<T> &vec)
 {
-	TVector<T> S;
-	if (dlina == A.dlina)
+	if (length == vec.length)
 	{
-		if (dlina == 0)
-			S.vector = 0;
-		else
-		{
-			S.dlina = dlina;
-			S.vector = new T[dlina];
-			for (int i = 0; i < dlina; i++)
-				S.vector[i] = vector[i] - A.vector[i];
-		}
+		TVector<T> res(*this);
+		for (int i = 0; i < length; i++)
+			res[i] = (*this)[i] - vec.vector[i];
+		return res;
 	}
 	else
-		throw 1;
-	return S;
+		throw Exception("Error length operand");
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-T TVector<T> :: operator *(TVector<T> &A)
+T TVector<T> :: operator *(TVector<T> &vec)
 {
-	T S = 0;
-	if (dlina == A.dlina)
+	if (length == vec.length)
 	{
-		if (dlina == 0)
-		{
-			S = 0;
-		}
-		else
-		{
-			for (int i = 0; i < dlina; i++)
-				S = S + vector[i] * A.vector[i];
-		}
+		int tmp = 0;
+		for (int i = 0; i < length; i++)
+			tmp += vector[i] * vec.vector[i];
+		return tmp;
 	}
 	else
-		throw 1;
-	return S;
+		throw Exception("Error length operand");
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TVector<T> TVector<T> :: operator *(double um)
+TVector<T> TVector<T>::operator+(const T &vol)
 {
-	TVector<T> S;
-	if (dlina == 0)
-	{
-		S.vector = 0;
-	}
+	TVector<T> res(*this);
+	for (int i = 0; i < length; i++)
+		res.vector[i] = res.vector[i] + vol;
+	return res;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+TVector<T> TVector<T>::operator-(const T &vol)
+{
+	TVector<T> res(*this);
+	for (int i = 0; i < length; i++)
+		res.vector[i] = res.vector[i] - vol;
+	return res;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+TVector<T> TVector<T>::operator*(const T &vol)
+{
+	TVector<T> res(*this);
+	for (int i = 0; i < length; i++)
+		res.vector[i] = res.vector[i] * vol;
+	return res;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+bool TVector<T>::operator==(const TVector &vec) const
+{
+	if (length != vec.length)
+		return 0;
 	else
-	{
-		S.dlina = dlina;
-		S.vector = new T[dlina];
-		for (int i = 0; i < dlina; i++)
-			S.vector[i] = vector[i] * um;
-	}
-	return S;
-}
-
-//---------------------------------------------------------------------------------------
-template <class T>
-TVector<T> TVector<T> :: operator /(double del)
-{
-	TVector<T> S;
-	if (dlina == 0)
-	{
-		S.vector = 0;
-	}
-	else
-	{
-		S.dlina = dlina;
-		S.vector = new T[dlina];
-		for (int i = 0; i < dlina; i++)
-			S.vector[i] = vector[i] / del;
-	}
-	return S;
-}
-
-//---------------------------------------------------------------------------------------
-template <class T>
-TVector<T>& TVector<T> :: operator =(const TVector<T> &A)
-{
-	if (this != &A)
-	{
-		dlina = A.dlina;
-		if (dlina != 0)
-		{
-			if (vector != 0)
-				delete[]vector;
-			vector = new T[A.dlina];
-			for (int i = 0; i < A.dlina; i++)
+		for (int i = 0; i < length; i++)
+			if (vector[i] != vec.vector[i])
 			{
-				vector[i] = A.vector[i];
+				return 0;
 			}
-		}
-		else
-		{
-			if (vector != 0)
-				delete[]vector;
-			vector = 0;
-		}
+	return 1;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+bool TVector<T>::operator!=(const TVector &v) const
+{
+	return !(*this == v);
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+TVector<T>& TVector<T>::operator=(const TVector &vec)
+{
+	if (this != &vec)
+	{
+		delete[] vector;
+		length = vec.length;
+		vector = new T[length];
+		for (int i = 0; i < length; i++)
+			vector[i] = vec.vector[i];
 	}
 	return *this;
 }
 
-//---------------------------------------------------------------------------------------
-template <class T>
-T& TVector<T> ::operator[] (int I)
-{
-	if (I >= 0 && I < dlina)
-		return vector[I];
-	throw 1;
-}
 
 //---------------------------------------------------------------------------------------
-template <class T1>
-std::istream& operator >> (std::istream &A, TVector<T1> &B)
+template <class Type1>
+istream& operator>>(istream &in, TVector<Type1> &vec)
 {
-	cout << "Введите длину\n";
-	A >> B.dlina;
-	B.vector = new T1[B.dlina];
-	cout << "Введите сам вектор\n";
-	for (int i = 0; i < B.dlina; i++)
-	{
-		A >> B.vector[i];
-	}
-	return A;
+	for (int i = 0; i < vec.length; i++)
+		in >> vec.vector[i];
+	return in;
+}//-------------------------------------------------------------------------
+
+template <class Type1>
+ostream& operator<<(ostream &out, const TVector<Type1> &vec)
+{
+	for (int i = 0; i < vec.length; i++)
+		out << vec.vector[i] << ' ';
+	return out;
 }
 
-//---------------------------------------------------------------------------------------
-template <class T1>
-std::ostream& operator << (std::ostream &A, TVector<T1> &B)
-{
-	cout << "Длина вектора: ";
-	A << B.dlina << "\n";
-	cout << "Сам вектор:\n";
-	for (int i = 0; i < B.dlina; i++)
-	{
-		A << B.vector[i] << "\n";
-	}
-	return A;
-}
+
