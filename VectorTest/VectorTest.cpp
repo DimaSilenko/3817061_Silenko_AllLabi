@@ -7,6 +7,8 @@ TEST(TVector, can_create_vector_with_positive_length)
 	ASSERT_NO_THROW(TVector<int> v(5));
 }
 
+
+
 TEST(TVector, throws_when_create_vector_with_negative_length)
 {
 	ASSERT_ANY_THROW(TVector<int> v(-5));
@@ -48,6 +50,14 @@ TEST(TVector, can_set_and_get_element)
 	v[0] = 4;
 
 	EXPECT_EQ(4, v[0]);
+}
+
+TEST(TVector, can_set_and_get_double_element)
+{
+	TVector<double> v(4);
+	v[0] = 4.4;
+
+	EXPECT_EQ(4.4, v[0]);
 }
 
 TEST(TVector, throws_when_set_element_with_negative_index)
@@ -142,6 +152,17 @@ TEST(TVector, can_add_vectors_with_equal_length)
 
 	ASSERT_NO_THROW(v1 + v2);
 }
+
+TEST(TVector, can_add_double_vectors_with_equal_length)
+{
+	TVector<double> v1(2);
+	TVector<double> v2(2);
+	v1[0] = 4.4;
+	v2[0] = 5.5;
+
+	EXPECT_EQ(v1[0] + v2[0], 9.9);
+}
+
 
 TEST(TVector, cant_add_vectors_with_not_equal_length)
 {

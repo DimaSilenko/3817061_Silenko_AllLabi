@@ -8,9 +8,8 @@ before_script:
 script:
   - cmake ../3817061_Silenko_AllLabi
   - make -j
-  - ./Vector/Vector
   - ./VectorTest/VectorTest
-  -./Matrix/Matrix
-  -./MatrixTest/MatrixTest
+  - ./MatrixTest/MatrixTest
+  - ./StackTest/StackTest
 notifications:
   email: false
