@@ -51,7 +51,7 @@ TQueue<T>::TQueue(TQueue<T> &Que) : TStack<T>(Que) {
 template <class T>
 void TQueue<T>::Put(T el){
 	if (IsFull())
-		throw "Queue is full";
+		throw Exception("Queue already Full");
 	else {
 		TStack<T>::elem[start] = el;
 		start = (start + 1) % TStack<T>::length;
@@ -62,7 +62,7 @@ void TQueue<T>::Put(T el){
 template <class T>
 T TQueue<T>::Get() {
 	if (IsEmpty())
-		throw "Queue is empty";
+		throw Exception("Stack already Empty");
 	else {
 		T tmp = TStack<T>::elem[TStack<T>::top];
 		TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::length;

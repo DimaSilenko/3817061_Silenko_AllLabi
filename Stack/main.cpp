@@ -5,15 +5,17 @@
 using namespace std;
 
 int  main (){
-	TStack<int> A(10);
-	cout << "IsEmpty:" << A.IsEmpty() << endl;
-	A.Put(43);
-	A.Put(42);
-	cout <<"IsFull:"<< A.IsFull()<<endl;
-	cout <<"Get1:"<< A.Get()<<endl;
-	cout << "IsEmpty:" << A.IsEmpty() << endl;
-	cout << "Get1:" << A.Get() << endl;
-	cout << "IsEmpty:" << A.IsEmpty() << endl;
+	TStack<int> St(2);
+	if (St.IsEmpty())
+	{
+		St.Put(8);
+		St.Put(9);
+	}
+	if (St.IsFull())
+	{
+		cout << "2:" << St.Get() << endl;
+		cout << "1:" << St.Get() << endl;
+	}
 
 	return 0;
 }

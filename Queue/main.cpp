@@ -4,12 +4,19 @@ using namespace std;
 
 int main ()
 {  
-	TQueue<int> test1(10);
-	test1.Put(43);
-	test1.Put(42);
-	test1.Put(41);
-	cout << "Get1:" << test1.Get() << endl;
-	cout << "Get2:" << test1.Get() << endl;
+	TQueue<int> Que(3);
+	if (Que.IsEmpty())
+	{
+		Que.Put(1);
+		Que.Put(2);
+		Que.Put(3);
+	}
+	if (Que.IsFull())
+	{
+		cout << "1:" << Que.Get() << endl;
+		cout << "2:" << Que.Get() << endl;
+		cout << "3:" << Que.Get() << endl;
+	}
 
 	return 0;
 }
