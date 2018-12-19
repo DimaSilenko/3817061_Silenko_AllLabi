@@ -16,7 +16,7 @@ public:
 	virtual  ~TVector();
 
 	int GetLength() const; // Размер вектора
-	virtual T& operator[](int pos); // Доступ
+	virtual T& operator[](int pos); // Доступ по индексу
 
 
 	TVector<T> operator +(const TVector<T> &vec); // сложение векторов
@@ -228,7 +228,7 @@ template <class Type1>
 ostream& operator<<(ostream &out, const TVector<Type1> &vec)
 {
 	for (int i = 0; i < vec.length; i++)
-		out << vec.vector[i] << ' ';
+		out  << vec.vector[i] << '\t';
 	return out;
 }
 
