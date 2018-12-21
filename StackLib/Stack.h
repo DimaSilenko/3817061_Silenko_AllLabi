@@ -5,7 +5,8 @@
 using namespace std;
 
 template <class T>
-class TStack{
+class TStack
+{
 protected:
 	int length;// Длина стека
 	T* elem;// Элементы стека
@@ -13,18 +14,27 @@ protected:
 
 public:
 	TStack(int len = 0);
-	TStack(TStack &St);
-	~TStack();
+	TStack(TStack &st);
+	virtual ~TStack();
 
 	void Put(T el); // Положить элемент
 	T Get();// Взять элемент
+	int GetLength();// Получить длину стека
+
 	bool IsFull();// Проверка на полноту
 	bool IsEmpty();// Проверка на пустоту
+
+	void PrintStack(); //Вывод стека на экран
+
+	TStack& operator=(const TStack<T>& st); //Присваивание стека
+	int operator==(const TStack<T>& st) const; //Проверка на равенство
+	int operator!=(const TStack<T>& st) const; // Проверка на неравенство
 };
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TStack<T>::TStack(int len){
+TStack<T>::TStack(int len)
+{
 	if (len < 0)
 		throw Exception("Error length");
 	else 
@@ -42,21 +52,23 @@ TStack<T>::TStack(int len){
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TStack<T>::TStack(TStack<T> &St){
-	length = St.length;
-	top = St.top;
+TStack<T>::TStack(TStack<T> &st)
+{
+	length = st.length;
+	top = st.top;
 	if (length == 0)
 		elem = 0;
 	else{
 		elem = new T[length];
 		for (int i = 0; i < length; i++)
-			elem[i] = St.elem[i];
+			elem[i] = st.elem[i];
 	}
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-TStack<T> :: ~TStack(){
+TStack<T> :: ~TStack()
+{
 	if (elem != 0)
 		delete[] elem;
 
@@ -66,7 +78,8 @@ TStack<T> :: ~TStack(){
 
 //---------------------------------------------------------------------------------------
 template <class T>
-void TStack<T>::Put(T el){
+void TStack<T>::Put(T el)
+{
 	if (IsFull())
 		throw Exception("Stack already Full");
 	else{
@@ -77,7 +90,8 @@ void TStack<T>::Put(T el){
 
 //---------------------------------------------------------------------------------------
 template <class T>
-T TStack<T>::Get(){
+T TStack<T>::Get()
+{
 	if (IsEmpty())
 		throw Exception("Stack already Empty");
 	else{
@@ -88,12 +102,66 @@ T TStack<T>::Get(){
 
 //---------------------------------------------------------------------------------------
 template <class T>
-bool TStack<T>::IsEmpty(){
+int TStack<T>::GetLength()
+{
+	return length;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+bool TStack<T>::IsEmpty()
+{
 	return (top == 0);
 }
 
 //---------------------------------------------------------------------------------------
 template <class T>
-bool TStack<T>::IsFull(){
+bool TStack<T>::IsFull()
+{
 	return (top >= length);
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+void TStack<T>::PrintStack()
+{
+	for (int i = top - 1; i >= 0; i--)
+		cout << " " << elem[i];
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+TStack<T>& TStack<T>::operator=(const TStack<T>& st)
+{
+	if (this != &st)
+	{
+		delete[] elem;
+		top = st.top;
+		length= st.length;
+		elem = new T[length];
+		for (int i = 0; i < length; i++)
+			elem[i] = st.elem[i];
+	}
+	return *this;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+int TStack<T>::operator==(const TStack<T>& st) const
+{
+	if (top != st.top)
+		return 0;
+	if (length != st.length)
+		return 0;
+	for (int i = 0; i < top; i++)
+		if (elem[i] != st.elem[i])
+			return 0;
+	return 1;
+}
+
+//---------------------------------------------------------------------------------------
+template <class T>
+int TStack<T>::operator!=(const TStack<T>& st) const
+{
+	return !(*this == st);
 }

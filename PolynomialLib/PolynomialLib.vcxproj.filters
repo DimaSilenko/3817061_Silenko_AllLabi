@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Лабораторные работы\Ответы\Все лабы Егор\381706-1ErmolaevAllLabs\PolynomialLib\Polynom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Лабораторные работы\Ответы\Все лабы Егор\381706-1ErmolaevAllLabs\PolynomialLib\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Лабораторные работы\Ответы\Все лабы Егор\381706-1ErmolaevAllLabs\PolynomialLib\Monom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Лабораторные работы\Ответы\Все лабы Егор\381706-1ErmolaevAllLabs\PolynomialLib\Polynom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Лабораторные работы\Ответы\Все лабы Егор\381706-1ErmolaevAllLabs\PolynomialLib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{96EB8398-2F7C-3B0D-850B-0070C39FD39F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{68B370A1-D7D3-3B48-B5F7-4F4FD773427F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

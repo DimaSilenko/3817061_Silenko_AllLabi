@@ -12,7 +12,7 @@ int main()
 
   cout << "Матрицы: \n";
   TMatrix<double> M1(5), M2(5), Res(5);
-	TMatrix<double> MDEL(5);
+	TMatrix<double> MDel(5);
   for (int i = 0; i < 5; i++)
     for (int j = 0; j < 5 - i; j++) 
     {
@@ -60,8 +60,8 @@ int main()
   }
 
 	try {
-		MDEL = M1 / M2;
-		cout << "Матрица 1 / Матрица 2:" << endl  << MDEL << endl;
+		MDel = M1 / M2;
+		cout << "Матрица 1 / Матрица 2:" << endl  << MDel << endl;
 	}
 	catch (Exception exp)
 	{
