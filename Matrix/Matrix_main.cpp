@@ -1,4 +1,4 @@
-#include "Matrix.h"
+ï»¿#include "Matrix.h"
 #include <cstdlib>
 #include <iomanip>
 #include <ctime>
@@ -10,7 +10,7 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 	double ra, nd, om;
 
-  cout << "Ìàòðèöû: \n";
+  cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ñ‹: \n";
   TMatrix<double> M1(5), M2(5), Res(5);
 	TMatrix<double> MDel(5);
   for (int i = 0; i < 5; i++)
@@ -28,13 +28,13 @@ int main()
 
 			M2[i][j] = om;
     }
-  cout << "\nÌàòðèöà 1:" << endl << M1 << endl;
-  cout << "\nÌàòðèöà 2:" << endl << M2 << endl;
+  cout << "\nÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 1:" << endl << M1 << endl;
+  cout << "\nÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 2:" << endl << M2 << endl;
 
-  cout << "\nÀðèôìåòè÷åñêèå îïåðàöèè: \n\n";
+  cout << "\nÐÑ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸: \n\n";
   try {
     Res = M1 + M2;
-    cout << "Ìàòðèöà 1 + Ìàòðèöà 2:" << endl << Res << endl;
+    cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 1 + ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 2:" << endl << Res << endl;
   }
   catch (Exception exp)
   {
@@ -43,7 +43,7 @@ int main()
 
   try {
     Res = M1 - M2;
-    cout << "Ìàòðèöà 1 - Ìàòðèöà 2:" << endl << Res << endl;
+    cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 1 - ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 2:" << endl << Res << endl;
   }
   catch (Exception exp)
   {
@@ -52,7 +52,7 @@ int main()
 
   try {
     Res = M1 * M2;
-    cout << "Ìàòðèöà 1 * Ìàòðèöà 2:" << endl << Res << endl;
+    cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 1 * ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 2:" << endl << Res << endl;
   }
   catch (Exception exp)
   {
@@ -61,19 +61,19 @@ int main()
 
 	try {
 		MDel = M1 / M2;
-		cout << "Ìàòðèöà 1 / Ìàòðèöà 2:" << endl  << MDel << endl;
+		cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 1 / ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° 2:" << endl  << MDel << endl;
 	}
 	catch (Exception exp)
 	{
 		exp.Print();
 	}
 
-  cout << "\n\nÂâåäèòå ìàòðèöó ðàçìåðíîñòè 3:\n";
+  cout << "\n\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚Ð¸ 3:\n";
   TMatrix <int> MT(3);
   cin >> MT;
-  cout << "\nÂâåäåííàÿ âàìè ìàòðèöà:" << endl << MT;
+  cout << "\nÐ’Ð²ÐµÐ´ÐµÐ½Ð½Ð°Ñ Ð²Ð°Ð¼Ð¸ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð°:" << endl << MT;
 
-	//òåñòèðîâàíèå ñêîðîñòè
+	//Ñ‚ÐµÑÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚Ð¸
 	/*TMatrix <int> MTest1(3000);
 	TMatrix <int> MTest2(3000);
 	TMatrix <int> MTest3(3000);
@@ -90,7 +90,7 @@ int main()
 	MTest3 = MTest1 + MTest2;
 	int end = clock();
 
-	cout << "Âðåìÿ: " << (end - start) << endl;*/
+	cout << "Ð’Ñ€ÐµÐ¼Ñ: " << (end - start) << endl;*/
 
   return 0;
 }

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include"Queue.h"
 using namespace std;
 
@@ -7,7 +7,7 @@ int main ()
 	setlocale(LC_ALL, "Russian");
 
 	int len;
-	cout << "Ââåäèòå äëèíó î÷åðåäè\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸\n";
 	cin >> len;
 	try
 	{
@@ -15,7 +15,7 @@ int main ()
 		for (int i = 0; i < len; i++)
 		{
 			qu.Put(i);
-			cout << "Â î÷åðåäü ââåäåíî " << i << endl;
+			cout << "Ð’ Ð¾Ñ‡ÐµÑ€ÐµÐ´ÑŒ Ð²Ð²ÐµÐ´ÐµÐ½Ð¾ " << i << endl;
 		}
 
 		cout << endl;
@@ -23,7 +23,7 @@ int main ()
 		while (!qu.IsEmpty())
 		{
 			len = qu.Get();
-			cout << "Â î÷åðåäè ëåæèò " << len << endl;
+			cout << "Ð’ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸ Ð»ÐµÐ¶Ð¸Ñ‚ " << len << endl;
 		}
 	}
 	catch (Exception exp)

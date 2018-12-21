@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Vector.h"
 #include <iomanip>
 
@@ -11,14 +11,14 @@ public:
 	TMatrix(const TVector<TVector<T> > &matr);
 	virtual ~TMatrix();
 
-	TMatrix operator+(const TMatrix &matr);         // сложение
-	TMatrix operator-(const TMatrix &matr);         // вычитание
-	TMatrix<T> operator*(const TMatrix<T> &matr);  // умножение
-	TMatrix<T> operator/(const TMatrix<T> &matr);    //деление
+	TMatrix operator+(const TMatrix &matr);         // СЃР»РѕР¶РµРЅРёРµ
+	TMatrix operator-(const TMatrix &matr);         // РІС‹С‡РёС‚Р°РЅРёРµ
+	TMatrix<T> operator*(const TMatrix<T> &matr);  // СѓРјРЅРѕР¶РµРЅРёРµ
+	TMatrix<T> operator/(const TMatrix<T> &matr);    //РґРµР»РµРЅРёРµ
 
-	bool operator==(const TMatrix &matr) const;      // сравнение на равенство
-	bool operator!=(const TMatrix &matr) const;      // сравнение на неравенство
-	TMatrix& operator=(const TMatrix &matr);        // присваивание
+	bool operator==(const TMatrix &matr) const;      // СЃСЂР°РІРЅРµРЅРёРµ РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
+	bool operator!=(const TMatrix &matr) const;      // СЃСЂР°РІРЅРµРЅРёРµ РЅР° РЅРµСЂР°РІРµРЅСЃС‚РІРѕ
+	TMatrix& operator=(const TMatrix &matr);        // РїСЂРёСЃРІР°РёРІР°РЅРёРµ
 
 
 	template <class Type2>
