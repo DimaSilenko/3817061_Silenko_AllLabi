@@ -2,8 +2,8 @@
 #include"Queue.h"
 using namespace std;
 
-int main ()
-{  
+int main()
+{
 	setlocale(LC_ALL, "Russian");
 
 	int len;

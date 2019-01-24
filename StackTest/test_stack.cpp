@@ -3,12 +3,12 @@
 
 TEST(TStack, can_create_stack_with_positive_length)
 {
-	ASSERT_NO_THROW(TStack<int> St(25)); 
+	ASSERT_NO_THROW(TStack<int> St(25));
 }
 
 TEST(TStack, throws_when_create_stack_with_negative_length)
 {
-	ASSERT_ANY_THROW(TStack<int> St(-25)); 
+	ASSERT_ANY_THROW(TStack<int> St(-25));
 }
 
 TEST(TStack, create_empty_stack)

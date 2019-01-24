@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int  main ()
+int  main()
 {
 	setlocale(LC_ALL, "Russian");
 
@@ -20,7 +20,7 @@ int  main ()
 		{
 			st.Put(i);
 		}
-	
+
 		if (st.IsFull())
 		{
 			cout << "\nСтек выбранной вами длинны: \n";

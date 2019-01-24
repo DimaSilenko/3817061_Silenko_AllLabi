@@ -12,7 +12,7 @@ TEST(TQueue, cant_create_queue_with_negative_length)
 	ASSERT_ANY_THROW(TQueue<int> Qu(-25));
 }
 
-TEST(TQueue, can_create_copied_queue){
+TEST(TQueue, can_create_copied_queue) {
 	TQueue<int> Qu1(25);
 	ASSERT_NO_THROW(TQueue<int> Qu2(Qu1));
 }
@@ -30,7 +30,7 @@ TEST(TQueue, check_full_queue_false)
 	EXPECT_EQ(0, Qu.IsFull());
 }
 
-TEST(TQueue, check_empty_queue_true){
+TEST(TQueue, check_empty_queue_true) {
 	TQueue<int> Qu(7);
 	EXPECT_EQ(1, Qu.IsEmpty());
 }
@@ -41,15 +41,15 @@ TEST(TQueue, check_empty_queue_false) {
 	EXPECT_EQ(0, Qu.IsEmpty());
 }
 
-TEST(TQueue, cant_put_element_in_full_queue){
+TEST(TQueue, cant_put_element_in_full_queue) {
 	TQueue<int> Qu(4);
-	for(int i=0;i<4;i++)
+	for (int i = 0; i < 4; i++)
 		Qu.Put(25);
 
 	ASSERT_ANY_THROW(Qu.Put(25));
 }
 
-TEST(TQueue, cant_get_element_in_empty_queue){
+TEST(TQueue, cant_get_element_in_empty_queue) {
 	TQueue<int> Qu(4);
 
 	ASSERT_ANY_THROW(Qu.Get());

@@ -37,17 +37,17 @@ TStack<T>::TStack(int len)
 {
 	if (len < 0)
 		throw Exception("Error length");
-	else 
-		if (len == 0){
-		length = 0;
-		elem = 0;
-		top = 0;
-	}
-	else{
-		elem = new T[len];
-		length = len;
-		top = 0;
-	}
+	else
+		if (len == 0) {
+			length = 0;
+			elem = 0;
+			top = 0;
+		}
+		else {
+			elem = new T[len];
+			length = len;
+			top = 0;
+		}
 }
 
 //---------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ TStack<T>::TStack(TStack<T> &st)
 	top = st.top;
 	if (length == 0)
 		elem = 0;
-	else{
+	else {
 		elem = new T[length];
 		for (int i = 0; i < length; i++)
 			elem[i] = st.elem[i];
@@ -82,7 +82,7 @@ void TStack<T>::Put(T el)
 {
 	if (IsFull())
 		throw Exception("Stack already Full");
-	else{
+	else {
 		elem[top] = el;
 		top++;
 	}
@@ -94,7 +94,7 @@ T TStack<T>::Get()
 {
 	if (IsEmpty())
 		throw Exception("Stack already Empty");
-	else{
+	else {
 		top--;
 		return elem[top];
 	}
@@ -137,7 +137,7 @@ TStack<T>& TStack<T>::operator=(const TStack<T>& st)
 	{
 		delete[] elem;
 		top = st.top;
-		length= st.length;
+		length = st.length;
 		elem = new T[length];
 		for (int i = 0; i < length; i++)
 			elem[i] = st.elem[i];
@@ -150,7 +150,7 @@ template <class T>
 int TStack<T>::operator==(const TStack<T>& st) const
 {
 	if (top != st.top)
-		return 0;
+    return 0;
 	if (length != st.length)
 		return 0;
 	for (int i = 0; i < top; i++)

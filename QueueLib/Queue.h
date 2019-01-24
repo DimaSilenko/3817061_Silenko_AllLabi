@@ -6,12 +6,12 @@ using namespace std;
 
 template <class T>
 class TQueue : public TStack <T> // Очередь - наследник стека
-{ 
+{
 protected:
 	int start; // Начало очереди
 	int count; // Кол-во элементов
 public:
-	TQueue(int len = 0); 
+	TQueue(int len = 0);
 	TQueue(TQueue <T> &que);
 
 	void Put(T el); //Положить в конец
@@ -21,7 +21,7 @@ public:
 };
 
 template <class T>
-TQueue<T>::TQueue(int len) : TStack<T>(len) 
+TQueue<T>::TQueue(int len) : TStack<T>(len)
 {
 	if (len < 0)
 		throw Exception("Error length");
@@ -47,7 +47,7 @@ TQueue<T>::TQueue(int len) : TStack<T>(len)
 template <class T>
 TQueue<T>::TQueue(TQueue<T> &que) : TStack<T>(que)
 {
-	start = que.start; 
+	start = que.start;
 	count = que.count;
 }
 
@@ -72,19 +72,19 @@ T TQueue<T>::Get()
 		T tmp = TStack<T>::elem[TStack<T>::top];
 		TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::length;
 		count--;
-		
+
 		return tmp;
 	}
 }
 
 template <class T>
-bool TQueue<T>::IsFull() 
+bool TQueue<T>::IsFull()
 {
 	return (count == TStack<T>::length);
 }
 
 template <class T>
-bool TQueue<T>::IsEmpty() 
+bool TQueue<T>::IsEmpty()
 {
 	return (count == 0);
 }
