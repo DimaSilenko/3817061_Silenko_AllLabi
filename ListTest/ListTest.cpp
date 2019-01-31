@@ -1,4 +1,4 @@
-#include "List.h"
+﻿#include "List.h"
 #include <gtest.h>
 
 TEST(Elem, can_get_data)
@@ -113,20 +113,6 @@ TEST(List, can_copy_list)
 	ASSERT_EQ(list.GetBegin(), list2.GetBegin());
 	ASSERT_EQ(list.GetBegin(), list2.GetBegin());
 }
-
-//TEST(List, can_check_full_true)
-//{
-//  TList<int> list;
-//  try
-//  {
-//    while (1)
-//      list.PutEnd(1);
-//  }
-//  catch (...)
-//  {
-//    ASSERT_TRUE(list.IsFull());
-//  }
-//}
 
 
 TEST(List, can_check_empty_true)
