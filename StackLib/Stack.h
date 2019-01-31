@@ -18,6 +18,7 @@ public:
 	virtual ~TStack();
 
 	void Put(T el); // Положить элемент
+	T Top();
 	T Get();// Взять элемент
 	int GetLength();// Получить длину стека
 
@@ -85,6 +86,18 @@ void TStack<T>::Put(T el)
 	else {
 		elem[top] = el;
 		top++;
+	}
+}
+
+//---------------------------------------------------------------------------------------
+template<class T>
+T TStack<T>::Top()
+{
+	if (IsEmpty())
+		throw Exception("Stack already Empty");
+	else
+	{
+		return elem[top - 1];
 	}
 }
 

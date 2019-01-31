@@ -18,6 +18,8 @@ public:
 	T Get(); //Взять первый элемент
 	bool IsFull(); //Проверка на полноту
 	bool IsEmpty(); //Проверка на пустоту
+
+	void Print();
 };
 
 template <class T>
@@ -87,4 +89,11 @@ template <class T>
 bool TQueue<T>::IsEmpty()
 {
 	return (count == 0);
+}
+
+template<class T>
+void TQueue<T>::Print()
+{
+	for (int i = start; i < TStack<T>::top; i = (i + 1) % TStack<T>::length)
+		cout << TStack<T>::elem[i];
 }
