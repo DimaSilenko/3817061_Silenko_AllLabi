@@ -1,4 +1,4 @@
-﻿#int pragma once
+﻿# pragma once
 #include "NewStack.h"
 #include "ExceptionLib.h"
 
