@@ -31,7 +31,7 @@ template <class T>
 TMStack<T>::TMStack(int _countst, int _length)
 {
   if (_countst <= 0 || _length <= 0)
-    throw Exception("Error leight MultiStack");
+    throw Exception("Error lenght MultiStack");
   countst = _countst;
   length = _length;
 

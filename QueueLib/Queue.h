@@ -15,6 +15,7 @@ public:
 	TQueue(TQueue <T> &que);
 
 	void Put(T el); //Положить в конец
+	T Top();
 	T Get(); //Взять первый элемент
 	bool IsFull(); //Проверка на полноту
 	bool IsEmpty(); //Проверка на пустоту
@@ -25,25 +26,8 @@ public:
 template <class T>
 TQueue<T>::TQueue(int len) : TStack<T>(len)
 {
-	if (len < 0)
-		throw Exception("Error length");
-	else
-		if (len == 0)
-		{
-			start = 0;
-			this->length = 0;
-			this->elem = 0;
-			this->top = 0;
-			count = 0;
-		}
-		else
-		{
-			this->length = len;
-			this->elem = new T[len];
-			this->top = 0;
-			start = 0;
-			count = 0;
-		}
+	start = 0;
+	count = 0;
 }
 
 template <class T>
@@ -58,11 +42,18 @@ void TQueue<T>::Put(T el)
 {
 	if (IsFull())
 		throw Exception("Queue already Full");
-	else {
-		TStack<T>::elem[start] = el;
-		start = (start + 1) % TStack<T>::length;
+	else
+	{
+		TStack<T>::Put(el);
+		TStack<T>::top = TStack<T>::top % TStack<T>::length;
 		count++;
 	}
+}
+
+template<class T>
+inline T TQueue<T>::Top()
+{
+	return TStack<T>::elem[start];
 }
 
 template <class T>
@@ -70,11 +61,11 @@ T TQueue<T>::Get()
 {
 	if (IsEmpty())
 		throw Exception("Stack already Empty");
-	else {
-		T tmp = TStack<T>::elem[TStack<T>::top];
-		TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::length;
+	else
+	{
+		T tmp = TStack<T>::elem[start];
+		start = (start + 1) % TStack<T>::length;
 		count--;
-
 		return tmp;
 	}
 }
@@ -94,6 +85,7 @@ bool TQueue<T>::IsEmpty()
 template<class T>
 void TQueue<T>::Print()
 {
-	for (int i = start; i < TStack<T>::top; i = (i + 1) % TStack<T>::length)
+	for (int i = start; i < TStack<T>::top; i = (i + 1) % TStack<T>::length) 
 		cout << TStack<T>::elem[i];
 }
+

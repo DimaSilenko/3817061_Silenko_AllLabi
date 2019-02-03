@@ -1,21 +1,13 @@
 ﻿#pragma once
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-class Exception 
+class Exception
 {
 private:
 	string str;
 public:
-  Exception(std::string _str);
-  void Print();
+	Exception(string _str) : str(_str) {}
+	void Print() { cout << "\nWarning! \nMessage: " << str << endl; }
 };
-
-Exception::Exception(std::string _str) : str(_str) {}
-
-void Exception::Print()
-{
-	cout << "\nWarning! \nMessage: " << str << endl;
-}

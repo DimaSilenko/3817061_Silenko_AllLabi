@@ -107,10 +107,8 @@ T TStack<T>::Get()
 {
 	if (IsEmpty())
 		throw Exception("Stack already Empty");
-	else {
-		top--;
-		return elem[top];
-	}
+	top--;
+	return elem[top];
 }
 
 //---------------------------------------------------------------------------------------
@@ -163,7 +161,7 @@ template <class T>
 int TStack<T>::operator==(const TStack<T>& st) const
 {
 	if (top != st.top)
-    return 0;
+		return 0;
 	if (length != st.length)
 		return 0;
 	for (int i = 0; i < top; i++)
