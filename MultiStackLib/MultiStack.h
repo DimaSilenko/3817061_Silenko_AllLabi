@@ -1,4 +1,4 @@
-п»ї# pragma once
+#pragma once
 #include "NewStack.h"
 #include "ExceptionLib.h"
 
@@ -6,24 +6,24 @@ template <class T>
 class TMStack
 {
 protected:
-  int length;                                 //РґР»РёРЅР° РјСѓР»СЊС‚РёСЃС‚РµРєР°
-  T* elem;                                   //РјР°СЃСЃРёРІ СЌР»РµРјРµРЅС‚РѕРІ РјСѓР»СЊС‚РёСЃС‚РµРєР°
-  int countst;                               //РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РµРєРѕРІ РІ РјСѓР»СЊС‚РёСЃС‚РµРєРµ
-  TNewStack<T>** stackMas;                   //РјР°СЃСЃРёРІ СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° РЅР°С‡Р°Р»Рѕ РєР°Р¶РґРѕРіРѕ СЃС‚РµРєР° РІ РјСѓР»СЊС‚РёСЃС‚РµРєРµ
-  int CountFree();                          //РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРІРѕР±РѕРґРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РјСѓР»СЊС‚РёСЃС‚РµРєРµ
-  void Repack(int _st);                      //РїРµСЂРµРїР°РєРѕРІРєР° СЃС‚РµРєР° СЃ СѓРІРµР»РёС‡РµРЅРёРµРј СЃРІРѕР±РѕРґРЅРѕР№ РїР°РјСЏС‚Рё РІ СЃС‚РµРєРµ st
+  int length;                                 //длина мультистека
+  T* elem;                                   //массив элементов мультистека
+  int countst;                               //количество стеков в мультистеке
+  TNewStack<T>** stackMas;                   //массив указателей на начало каждого стека в мультистеке
+  int CountFree();                          //количество свободных элементов в мультистеке
+  void Repack(int _st);                      //перепаковка стека с увеличением свободной памяти в стеке st
 
 public:
   TMStack(int _countst = 1, int _length = 10);
   TMStack(TMStack &mst);
 
-  int GetLength();                         //РїРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ РјСѓР»СЊС‚РёСЃС‚РµРєР°
-	T Get(int _st);                         //РІР·СЏС‚СЊ СЌР»РµРјРµРЅС‚ РёР· СЃС‚РµРєР° РїРѕРґ РЅРѕРјРµСЂРѕРј st
-  void Set(int _st, T _elem);             //РїРѕР»РѕР¶РёС‚СЊ РІ СЃС‚РµРє st СЌР»РµРјРµРЅС‚ _elem
-  bool IsFull(int _st);                  //РїСЂРѕРІРµСЂРёС‚СЊ РЅР° РїРѕР»РЅРѕС‚Сѓ СЃС‚РµРє st
-  bool IsEmpty(int _st);                 //РїСЂРѕРІРµСЂРёС‚СЊ РЅР° РїСѓСЃС‚РѕС‚Сѓ СЃС‚РµРє st
+  int GetLength();                         //получить длину мультистека
+	T Get(int _st);                         //взять элемент из стека под номером st
+  void Set(int _st, T _elem);             //положить в стек st элемент _elem
+  bool IsFull(int _st);                  //проверить на полноту стек st
+  bool IsEmpty(int _st);                 //проверить на пустоту стек st
 
-  void PrintMStack();                    //РІС‹РІРѕРґ РјСѓР»СЊС‚РёСЃС‚РµРєР° РЅР° СЌРєСЂР°РЅ
+  void PrintMStack();                    //вывод мультистека на экран
 };
 
 //------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ template <class T>
 TMStack<T>::TMStack(int _countst, int _length)
 {
   if (_countst <= 0 || _length <= 0)
-    throw Exception("Error leight MultiStack");
+    throw Exception("Error lenght MultiStack");
   countst = _countst;
   length = _length;
 
@@ -200,10 +200,10 @@ template<class T>
 void TMStack<T>::PrintMStack()
 {
   int m = 0;
-  cout << "\n\nРњСѓР»СЊС‚РёСЃС‚РµРє:";
+  cout << "\n\nМультистек:";
   for (int i = 0; i < countst; i++)
   {
-    cout << endl << "РЎС‚РµРє РїРѕРґ РЅРѕРјРµСЂРѕРј: " << i + 1 << "\n";
+    cout << endl << "Стек под номером: " << i + 1 << "\n";
     stackMas[i]->PrintNewStack();
   }
 }

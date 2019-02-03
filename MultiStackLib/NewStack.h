@@ -1,4 +1,4 @@
-п»ї#pragma once
+#pragma once
 #include <iostream>
 #include "Stack.h"
 using namespace std;
@@ -10,14 +10,14 @@ public:
   TNewStack(int _length, T* _elem);
   TNewStack(TNewStack<T>& newst);
 
-  int GetFreeCell();                      //РїРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРІРѕР±РѕРґРЅС‹С… СЏС‡РµРµРє РІ СЃС‚РµРєРµ
-  T Get();                               //Р·Р°Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РёР· СЃС‚РµРєР°
-  int GetLength();                       //РїРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ СЃС‚РµРєР°
-  int GetTop();                          //РїРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ РІРµСЂС€РёРЅС‹ СЃС‚РµРєР°
-	void Push(T _elem);                    //РїРѕР»РѕР¶РёС‚СЊ СЌР»РµРјРµРЅС‚ РІ СЃС‚РµРє
-  void SetMas(int _length, T* _elem);    //РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РјР°СЃСЃРёРІ elem СЂР°Р·РјРµСЂР° length РІ СЃС‚РµРє
+  int GetFreeCell();                      //получить количество свободных ячеек в стеке
+  T Get();                               //забрать элемент из стека
+  int GetLength();                       //получить длину стека
+  int GetTop();                          //получить позицию вершины стека
+	void Push(T _elem);                    //положить элемент в стек
+  void SetMas(int _length, T* _elem);    //преобразовать массив mas размера length в стек
 
-  void PrintNewStack();                  //РІС‹РІРѕРґ СЃС‚РµРєР° РЅР° СЌРєСЂР°РЅ
+  void PrintNewStack();                  //вывод стека на экран
 };
 
 //------------------------------------------------------------------------------
