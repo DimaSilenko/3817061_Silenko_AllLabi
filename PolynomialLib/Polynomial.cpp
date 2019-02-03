@@ -372,7 +372,7 @@ TPolynom& TPolynom::operator=(const TPolynom &pol)
 }
 
 //------------------------------------------------------------------------------
-bool TPolynom::operator==(TPolynom &pol)
+bool TPolynom::operator==(const TPolynom &pol)
 {
   if (this->count != pol.count)
     throw Exception("Error Different count");

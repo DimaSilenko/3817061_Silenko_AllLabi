@@ -24,7 +24,7 @@ public:
 	TPolynom operator*(TPolynom &pol);
 
 	TPolynom& operator=(const TPolynom &pol);
-	bool operator==(TPolynom &pol);
+	bool operator==(const TPolynom &pol);
 
   friend std::ostream& operator<<(std::ostream& ostr, TPolynom& pol);
 };
