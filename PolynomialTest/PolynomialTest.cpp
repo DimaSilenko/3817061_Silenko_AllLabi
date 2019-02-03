@@ -288,24 +288,24 @@ TEST(TPolynom, can_sub_equal_polynoms)
   ASSERT_TRUE(mon == 0);
 }
 
-//TEST(TPolynom, assign_operator_polynoms_work)
-//{
-//  TPolynom pol1(3);
-//  pol1 += tmon1;
-//  pol1 += tmon5;
-//  TPolynom pol2(3);
-//  pol2 += tmon2;
-//  pol2 += tmon4;
-//  ASSERT_NO_THROW(pol1 = pol2);
-//  TMonom* mon = pol1.GetBegin();
-//  ASSERT_TRUE(*mon == tmon4);
-//  ASSERT_EQ(3, mon->GetKoef());
-//  mon = mon->GetNext();
-//  ASSERT_TRUE(*mon == tmon2);
-//  ASSERT_EQ(2, mon->GetKoef());
-//  mon = mon->GetNext();
-//  ASSERT_TRUE(mon == 0);
-//}
+TEST(TPolynom, assign_operator_polynoms_work)
+{
+  TPolynom pol1(3);
+  pol1 += tmon1;
+  pol1 += tmon5;
+  TPolynom pol2(3);
+  pol2 += tmon2;
+  pol2 += tmon4;
+  ASSERT_NO_THROW(pol1 = pol2);
+  TMonom* mon = pol1.GetBegin();
+  ASSERT_TRUE(*mon == tmon4);
+  ASSERT_EQ(3, mon->GetKoef());
+  mon = mon->GetNext();
+  ASSERT_TRUE(*mon == tmon2);
+  ASSERT_EQ(2, mon->GetKoef());
+  mon = mon->GetNext();
+  ASSERT_TRUE(mon == 0);
+}
 
 TEST(TPolynom, throws_when_assign_monoms_with_different_count)
 {

@@ -355,7 +355,7 @@ TPolynom& TPolynom::operator=(const TPolynom &pol)
     while (buf1 != 0)
     {
       buf1 = buf1->GetNext();
-      delete[] buf2;
+      delete buf2;
       buf2 = buf1;
     }
     buf1 = pol.begin->GetNext();
