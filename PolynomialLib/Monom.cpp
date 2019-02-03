@@ -39,7 +39,7 @@ TMonom::TMonom(int _count, int* _deg, double _koef)
 }
 
 //------------------------------------------------------------------------------
-TMonom::TMonom(TMonom &mon)
+TMonom::TMonom(const TMonom &mon)
 {
   count = mon.count;
   koef = mon.koef;
@@ -203,7 +203,7 @@ TMonom TMonom::operator-=(TMonom & mon)
 }
 
 //------------------------------------------------------------------------------
-TMonom TMonom::operator*(TMonom& mon)
+TMonom TMonom::operator*(const TMonom& mon) const
 {
   if (count != mon.count)
     throw Exception("Error Different count");
@@ -228,7 +228,7 @@ TMonom TMonom::operator*=(TMonom& mon)
 }
 
 //------------------------------------------------------------------------------
-TMonom& TMonom::operator=(TMonom& mon)
+TMonom& TMonom::operator=(const TMonom& mon)
 {
 	if (count != mon.count)
 		throw Exception("Error size not equal");

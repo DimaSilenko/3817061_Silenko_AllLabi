@@ -12,7 +12,7 @@ protected:
 public:
   TMonom();
   TMonom(int _count, int* _deg, double _koef);
-  TMonom(TMonom& mon);
+  TMonom(const TMonom& mon);
   virtual ~TMonom();
 
 	void SetNext(TMonom* _next);                  //задать адрес следующего монома
@@ -31,10 +31,10 @@ public:
 	TMonom operator-(TMonom& mon);
 	TMonom operator-=(TMonom& mon);
 
-  TMonom operator*(TMonom& mon);
+  TMonom operator*(const TMonom& mon) const;
   TMonom operator*=(TMonom& mon);
 
-	TMonom& operator=(TMonom& mon);
+	TMonom& operator=(const TMonom& mon);
   bool operator==(TMonom& mon);
   bool operator>(TMonom& mon);
   bool operator<(TMonom& mon);
