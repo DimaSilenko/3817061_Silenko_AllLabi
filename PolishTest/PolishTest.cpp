@@ -159,3 +159,101 @@ TEST(Polish, can_check_ispolish)
 	ASSERT_EQ(false, IsPolish('25'));
 	ASSERT_EQ(false, IsPolish('!'));
 }
+
+TEST(Polish, throw_when_math_expression_have_wrong_symbol)
+{
+	char s[] = "1!5";
+	TString str(s);
+	ASSERT_ANY_THROW(ConvertToPol(str));
+}
+
+
+TEST(Polish, throw_when_math_expression_have_wrong_hooks)
+{
+	char s[] = "(2*5";
+	TString str(s);
+	ASSERT_ANY_THROW(ConvertToPol(str));
+}
+
+TEST(Polish, throw_when_math_expression_have_wrong_begin)
+{
+	char s[] = "/5*5";
+	TString str(s);
+	ASSERT_ANY_THROW(ConvertToPol(str));
+}
+
+TEST(Polish, no_throw_when_queue_is_rigth)
+{
+	TQueue<char> que(7);
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+	que.Put('*');
+	ASSERT_NO_THROW(Res(que));
+	ASSERT_EQ(Res(que), 25);
+}
+
+TEST(Polish, throw_when_queue_have_wrong_begin)
+{
+	TQueue<char> que(7);
+	que.Put('/');
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+	ASSERT_ANY_THROW(Res(que));
+}
+
+TEST(Polish, throw_when_queue_is_wrong)
+{
+	TQueue<char> que(7);
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+	que.Put('+');
+	que.Put('[');
+	que.Put('6');
+	que.Put(']');
+	ASSERT_ANY_THROW(Res(que));
+}
+
+TEST(Polish, throw_when_queue_absolutely_wrong)
+{
+	TQueue<char> que(10);
+	que.Put('[');
+	que.Put('7');
+	que.Put(']');
+
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+
+	que.Put('*');
+
+	que.Put('[');
+	que.Put('6');
+	que.Put(']');
+
+	ASSERT_ANY_THROW(Res(que));
+}
+
+TEST(Polish, throw_when_queue_have_wrong_symbol)
+{
+	TQueue<char> que(7);
+	que.Put('[');
+	que.Put('7');
+	que.Put(']');
+
+	que.Put('[');
+	que.Put('5');
+	que.Put(']');
+
+	que.Put(',');
+
+	ASSERT_ANY_THROW(Res(que));
+}

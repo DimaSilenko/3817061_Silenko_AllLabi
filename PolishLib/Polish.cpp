@@ -26,19 +26,27 @@ int GetPriority(const char prior)
 //------------------------------------------------------------------------------
 TQueue<char> ConvertToPol(TString str)
 {
+	int beg = 0;
+	int end = 0;
+
 	TQueue<char> que(str.GetLength() * 3);
 	TStack<char> st(str.GetLength() * 3);
 
 	for (int i = 0; i < str.GetLength(); i++)
 	{
 		if (i == 0)
+		{
 			if (str[0] == '-')
 			{
 				que.Put('[');
 				que.Put('0');
 				que.Put(']');
 			}
-		if (isdigit(str[i]))       //проверяет аргумент, является ли он десятичной цифрой (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+			else if (IsPolish(str[0]))
+				if (GetPriority(str[0]) != 1)
+					throw Exception("Error math expression");
+		}
+		if (isdigit(str[i]))
 		{
 			que.Put('[');
 			while ((i < str.GetLength()) && isdigit(str[i + 1]))
@@ -49,14 +57,24 @@ TQueue<char> ConvertToPol(TString str)
 			que.Put(str[i]);
 			que.Put(']');
 		}
-		else if (st.IsEmpty())
+		else if (st.IsEmpty() && IsPolish(str[i]))
+		{
 			st.Put(str[i]);
+			if (str[i] == '(')
+				beg++;
+			if (str[i] == ')')
+				throw Exception("Error math expression");
+		}
 		else if (IsPolish(str[i]))
 		{
 			if (str[i] == '(')
+			{
 				st.Put(str[i]);
+				beg++;
+			}
 			else if (str[i] == ')')
 			{
+				end++;
 				while (st.Top() != '(')
 					que.Put(st.Get());
 				st.Get();
@@ -74,90 +92,66 @@ TQueue<char> ConvertToPol(TString str)
 				}
 			}
 		}
+		else if (str[i] != '\0')
+			throw Exception("Error math expression");
 	}
 	while (!st.IsEmpty())
 		que.Put(st.Get());
+	if (beg != end)
+		throw Exception("Error math expression");
 	return que;
 }
 
 //------------------------------------------------------------------------------
-//double Res(TQueue<char> que)
-//{
-//  double res = 0;
-//  TStack<double> st(que.GetLength());
-//
-//  while (!que.IsEmpty())
-//  {
-//    char s = que.Get();
-//    if (s == '[')
-//    {
-//      s = que.Get();
-//      double tmp = std::atof(&s);							//преобразует строку в double
-//      while (que.Top() != ']' && !que.IsEmpty())
-//      {
-//        s = que.Get();
-//        tmp = tmp * 10 + std::atof(&s);
-//      }
-//      que.Get();
-//      st.Put(tmp);
-//    }
-//    if (IsPolish(s))
-//    {
-//      double d1 = st.Get();
-//      double d2 = st.Get();
-//      double d3 = 0;
-//
-//      if (s == '+')
-//        d3 = d2 + d1;
-//      if (s == '-')
-//        d3 = d2 - d1;
-//      if (s == '*')
-//        d3 = d2 * d1;
-//      if (s == '/')
-//        d3 = d2 / d1;
-//      st.Put(d3);
-//    }
-//  }
-//  res = st.Get();
-//  return res;
-//}
-
-double Res(TQueue<char> q)
+double Res(TQueue<char> que)
 {
 	double res = 0;
-	TStack<double> S(q.GetLength());
-	while (!q.IsEmpty())
+	TStack<double> st(que.GetLength());
+	if (IsPolish(que.Top()))
+		throw Exception("Error queue");
+	int i = 0;
+	int dit = 0;
+	int tmp = 0;
+	while (!que.IsEmpty())
 	{
-		char A = q.Get();
-		if (A == '[')
+		i++;
+		char c = que.Get();
+		if (c == '[')
 		{
-			A = q.Get();
-			double tmp = std::atof(&A);
-			while (q.Top() != ']' && !q.IsEmpty())
+			dit++;
+			c = que.Get();
+			double tmp = std::atof(&c);
+			while (que.Top() != ']' && !que.IsEmpty())
 			{
-				A = q.Get();
-				tmp = tmp * 10 + std::atof(&A);
+				c = que.Get();
+				tmp = tmp * 10 + std::atof(&c);
 			}
-			q.Get();
-			S.Put(tmp);
+			que.Get();
+			st.Put(tmp);
 		}
-		if (IsPolish(A))
+		else if (IsPolish(c))
 		{
-			double B = S.Get();
-			double C = S.Get();
-			double D = 0;
-			if (A == '+')
-				D = C + B;
-			if (A == '-')
-				D = C - B;
-			if (A == '*')
-				D = C * B;
-			if (A == '/')
-				D = C / B;
-			S.Put(D);
+			double A = st.Get();
+			double B = st.Get();
+			double C = 0;
+			if (c == '+')
+				C = B + A;
+			if (c == '-')
+				C = B - A;
+			if (c == '*')
+				C = B * A;
+			if (c == '/')
+				C = B / A;
+			st.Put(C);
 		}
+		else
+			throw Exception("Error symbol queue");
+		if (i == 2 && dit != 2)
+			throw Exception("Error queue");
 	}
-	res = S.Get();
+	res = st.Get();
+	if (!st.IsEmpty())
+		throw Exception("Error queue");
 	return res;
 }
 
