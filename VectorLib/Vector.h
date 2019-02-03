@@ -59,7 +59,7 @@ TVector<T>::TVector(int len)
 		}
 }
 
-	//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 template <class T>
 TVector<T>::TVector(const TVector<T> &V)
 {
@@ -228,7 +228,7 @@ template <class Type1>
 ostream& operator<<(ostream &out, const TVector<Type1> &vec)
 {
 	for (int i = 0; i < vec.length; i++)
-		out  << vec.vector[i] << '\t';
+		out << vec.vector[i] << '\t';
 	return out;
 }
 

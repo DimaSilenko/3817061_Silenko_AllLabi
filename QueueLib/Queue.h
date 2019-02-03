@@ -1,17 +1,18 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include "Stack.h"
 
 using namespace std;
 
 template <class T>
-class TQueue : public TStack <T> { // Очередь - наследник стека
+class TQueue : public TStack <T> // Очередь - наследник стека
+{
 protected:
 	int start; // Начало очереди
 	int count; // Кол-во элементов
 public:
-	TQueue(int len = 0); 
-	TQueue(TQueue <T> &Que);
+	TQueue(int len = 0);
+	TQueue(TQueue <T> &que);
 
 	void Put(T el); //Положить в конец
 	T Get(); //Взять первый элемент
@@ -20,7 +21,8 @@ public:
 };
 
 template <class T>
-TQueue<T>::TQueue(int len) : TStack<T>(len) {
+TQueue<T>::TQueue(int len) : TStack<T>(len)
+{
 	if (len < 0)
 		throw Exception("Error length");
 	else
@@ -43,13 +45,15 @@ TQueue<T>::TQueue(int len) : TStack<T>(len) {
 }
 
 template <class T>
-TQueue<T>::TQueue(TQueue<T> &Que) : TStack<T>(Que) {
-	start = Que.start; 
-	count = Que.count;
+TQueue<T>::TQueue(TQueue<T> &que) : TStack<T>(que)
+{
+	start = que.start;
+	count = que.count;
 }
 
 template <class T>
-void TQueue<T>::Put(T el){
+void TQueue<T>::Put(T el)
+{
 	if (IsFull())
 		throw Exception("Queue already Full");
 	else {
@@ -60,24 +64,27 @@ void TQueue<T>::Put(T el){
 }
 
 template <class T>
-T TQueue<T>::Get() {
+T TQueue<T>::Get()
+{
 	if (IsEmpty())
 		throw Exception("Stack already Empty");
 	else {
 		T tmp = TStack<T>::elem[TStack<T>::top];
 		TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::length;
 		count--;
-		
+
 		return tmp;
 	}
 }
 
 template <class T>
-bool TQueue<T>::IsFull() {
+bool TQueue<T>::IsFull()
+{
 	return (count == TStack<T>::length);
 }
 
 template <class T>
-bool TQueue<T>::IsEmpty() {
+bool TQueue<T>::IsEmpty()
+{
 	return (count == 0);
 }
