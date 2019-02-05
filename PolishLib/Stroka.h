@@ -1,12 +1,12 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include "ExceptionLib.h"
 
 class TString
 {
 protected:
-  char* string;																						//Сама строка
-  int length;																							//Длинна строки
+  char* string;																						//РЎР°РјР° СЃС‚СЂРѕРєР°
+  int length;																							//Р”Р»РёРЅРЅР° СЃС‚СЂРѕРєРё
 
 public:
   TString();
@@ -14,8 +14,8 @@ public:
   TString(char* _string);
   ~TString();
 
-  int GetLength();																				//Получить длинну строки
-  void DeleteString();																		//Удалить строку
+  int GetLength();																				//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅРЅСѓ СЃС‚СЂРѕРєРё
+  void DeleteString();																		//РЈРґР°Р»РёС‚СЊ СЃС‚СЂРѕРєСѓ
 
   TString operator+(TString &str);
   TString& operator=(TString &str);

@@ -1,4 +1,4 @@
-#include "gtest.h"
+﻿#include "gtest.h"
 #include "MultiStack.h"
 
 TEST(TNewStack, throws_when_create_newstack_with_negative_size)

@@ -1,10 +1,10 @@
-#include "StackList.h"
+ï»¿#include "StackList.h"
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-  cout << "Ââåäèòå ðàçìåð ñòåêà: ";
+  cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÑÑ‚ÐµÐºÐ°: ";
   int len;
   cin >> len;
 
@@ -19,22 +19,22 @@ int main()
 
 		if (stlst.IsFull())
 		{
-			cout << "\nÑòåê âûáðàííîé âàìè äëèííû: \n";
+			cout << "\nÐ¡Ñ‚ÐµÐº Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð²Ð°Ð¼Ð¸ Ð´Ð»Ð¸Ð½Ð½Ñ‹: \n";
 			stlst.PrintStLst();
-			cout << "\nÑòåê ïîëîí.\n";
+			cout << "\nÐ¡Ñ‚ÐµÐº Ð¿Ð¾Ð»Ð¾Ð½.\n";
 		}
   
-		cout << "\nÏåðâûé ýëåìåíò â ñòåêå: " << stlst.Get() << endl;
-		cout << "Òåïåðü ýòî ñòåê:\n";
+		cout << "\nÐŸÐµÑ€Ð²Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð² ÑÑ‚ÐµÐºÐµ: " << stlst.Get() << endl;
+		cout << "Ð¢ÐµÐ¿ÐµÑ€ÑŒ ÑÑ‚Ð¾ ÑÑ‚ÐµÐº:\n";
 		stlst.PrintStLst();
-		cout << "\nÅãî òåêóùàÿ äëèíà = " << stlst.GetLength() << "\nÂ òî âðåìÿ êàê ìàêñèìàëüíàÿ äëèíà = " << stlst.GetMaxLength() << endl;
+		cout << "\nÐ•Ð³Ð¾ Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ Ð´Ð»Ð¸Ð½Ð° = " << stlst.GetLength() << "\nÐ’ Ñ‚Ð¾ Ð²Ñ€ÐµÐ¼Ñ ÐºÐ°Ðº Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ Ð´Ð»Ð¸Ð½Ð° = " << stlst.GetMaxLength() << endl;
 
-		cout << "\nÂûâåäåì âåñü îñòàâøèéñÿ ñòåê:\n";
+		cout << "\nÐ’Ñ‹Ð²ÐµÐ´ÐµÐ¼ Ð²ÐµÑÑŒ Ð¾ÑÑ‚Ð°Ð²ÑˆÐ¸Ð¹ÑÑ ÑÑ‚ÐµÐº:\n";
 		int j = 1;
 
     while (!stlst.IsEmpty())
-     cout << "Ýëåìåíò ïîä íîìåðîì " << j++ << " : " << stlst.Get() << endl;
-    cout << "Ñòåê ïóñò.\n";
+     cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð¿Ð¾Ð´ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð¼ " << j++ << " : " << stlst.Get() << endl;
+    cout << "Ð¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚.\n";
   }
 
   catch (Exception exp)
