@@ -50,7 +50,7 @@ TMatrix<T>::TMatrix(const TVector<TVector<T> > &matr) : TVector<TVector<T> >(mat
 //-------------------------------------------------------------------------
 template <class T>
 TMatrix<T>::~TMatrix()
-{}//?????
+{}
 
 //-------------------------------------------------------------------------
 template <class T>
