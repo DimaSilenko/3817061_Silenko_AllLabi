@@ -16,6 +16,7 @@ protected:
 public:
   TMStack(int _countst = 1, int _length = 10);
   TMStack(TMStack &mst);
+	~TMStack();
 
   int GetLength();                         //получить длину мультистека
 	T Get(int _st);                         //взять элемент из стека под номером st
@@ -87,6 +88,17 @@ TMStack<T>::TMStack(TMStack &mst)
     }
   }
 }
+
+//------------------------------------------------------------------------------
+template <class T>
+TMStack<T>::~TMStack()
+{
+	length = 0;
+	countst = 0;
+	delete[] elem;
+	delete[] stackMas;
+}
+
 
 //------------------------------------------------------------------------------
 template <class T>

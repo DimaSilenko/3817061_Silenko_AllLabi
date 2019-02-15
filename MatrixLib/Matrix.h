@@ -57,7 +57,7 @@ template <class T>
 TMatrix<T> TMatrix<T>::operator+(const TMatrix<T> &matr)
 {
 	if (this->length == matr.length)
-		return TVector<TVector<T> >::operator+(matr);
+	 return TVector<TVector<T> >::operator+(matr);
 	else
 		throw Exception("Error length operand");
 }
