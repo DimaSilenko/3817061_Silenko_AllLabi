@@ -13,7 +13,7 @@ int main()
 	TVector <int> V1(3), V2(3), Res(3);
 	for (int i = 0; i < 3; i++)
 	{
-		ra = rand();
+    ra = rand();
 		nd = ra / RAND_MAX;
 		om = nd * 49 + 1;
 

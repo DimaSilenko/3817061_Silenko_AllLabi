@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Vector.h"
 #include <iomanip>
 
@@ -11,14 +11,14 @@ public:
 	TMatrix(const TVector<TVector<T> > &matr);
 	virtual ~TMatrix();
 
-	TMatrix operator+(const TMatrix &matr);         // сложение
-	TMatrix operator-(const TMatrix &matr);         // вычитание
-	TMatrix<T> operator*(const TMatrix<T> &Matr);  // умножение
-	TMatrix<T> operator/(const TMatrix<T> &MT);    //деление
+	TMatrix operator+(const TMatrix &matr);         // СЃР»РѕР¶РµРЅРёРµ
+	TMatrix operator-(const TMatrix &matr);         // РІС‹С‡РёС‚Р°РЅРёРµ
+	TMatrix<T> operator*(const TMatrix<T> &matr);  // СѓРјРЅРѕР¶РµРЅРёРµ
+	TMatrix<T> operator/(const TMatrix<T> &matr);    //РґРµР»РµРЅРёРµ
 
-	bool operator==(const TMatrix &matr) const;      // сравнение на равенство
-	bool operator!=(const TMatrix &matr) const;      // сравнение на неравенство
-	TMatrix& operator=(const TMatrix &matr);        // присваивание
+	bool operator==(const TMatrix &matr) const;      // СЃСЂР°РІРЅРµРЅРёРµ РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
+	bool operator!=(const TMatrix &matr) const;      // СЃСЂР°РІРЅРµРЅРёРµ РЅР° РЅРµСЂР°РІРµРЅСЃС‚РІРѕ
+	TMatrix& operator=(const TMatrix &matr);        // РїСЂРёСЃРІР°РёРІР°РЅРёРµ
 
 
 	template <class Type2>
@@ -50,14 +50,14 @@ TMatrix<T>::TMatrix(const TVector<TVector<T> > &matr) : TVector<TVector<T> >(mat
 //-------------------------------------------------------------------------
 template <class T>
 TMatrix<T>::~TMatrix()
-{}//?????
+{}
 
 //-------------------------------------------------------------------------
 template <class T>
 TMatrix<T> TMatrix<T>::operator+(const TMatrix<T> &matr)
 {
 	if (this->length == matr.length)
-		return TVector<TVector<T> >::operator+(matr);
+	 return TVector<TVector<T> >::operator+(matr);
 	else
 		throw Exception("Error length operand");
 }
@@ -74,28 +74,28 @@ TMatrix<T> TMatrix<T>::operator-(const TMatrix<T> &matr)
 
 //-------------------------------------------------------------------------
 template <class T>
-TMatrix<T> TMatrix<T>::operator*(const TMatrix<T> &Matr)
+TMatrix<T> TMatrix<T>::operator*(const TMatrix<T> &matr)
 {
-	if (this->length != Matr.length)
+	if (this->length != matr.length)
 		throw Exception("Error length operand");
 	TMatrix <T> res(this->length);
 	for (int i = 0; i < this->length; i++)
 		for (int j = i; j < this->length; j++) {
 			for (int k = i; k <= j; k++)
-				res.vector[i][j - i] += this->vector[i][k - i] * Matr.vector[k][j - k];
+				res.vector[i][j - i] += this->vector[i][k - i] * matr.vector[k][j - k];
 		}
 	return res;
 }
 
 //-------------------------------------------------------------------------
 template <class T>
-TMatrix<T> TMatrix<T>::operator/(const TMatrix<T> &Matr)
+TMatrix<T> TMatrix<T>::operator/(const TMatrix<T> &matr)
 {
-	if (this->length != Matr.length)
+	if (this->length != matr.length)
 		throw Exception("Error length operand");
 	TMatrix <T> copy(*this);
 	TMatrix <T> rez(this->length);
-	TMatrix <T> copyMt(Matr);
+	TMatrix <T> copyMt(matr);
 
 	for (int i = 0; i < this->length; i++)
 		rez[i][0] = 1 / copyMt[i][0];
