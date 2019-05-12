@@ -57,7 +57,9 @@ int main()
 	P2.Add(&_p3, &_p4);
 
 	cout << "В плекс добавлен введенный вами круг\n";
-	P2.Add(&cir.GetMid(), cir.GetRadius(), &_p3);
+	TPoint tmp = cir.GetMid();
+	double temp = cir.GetRadius();
+	P2.Add(&tmp, temp, &_p3);
 
 	cout << "Введите точку:\n";
 	cin >> p1 >> p2;
