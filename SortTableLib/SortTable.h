@@ -11,7 +11,7 @@ protected:
   int count;								//Количество элементов в таблице
 public:
 	TSortTable(int _length = 10);
-  TSortTable(string* _keys, T* _data, int _length);
+  TSortTable(string* _keys, T* _data, int _length, int numOfSort);
   TSortTable(TSortTable<T> &stable);
 
 	void SetSize(int _size);					//Задать размер таблицы
@@ -26,6 +26,10 @@ public:
   void Resize(int _size);						//Перепаковка
 
   T& operator[](string _key);				//Доступ к элементу по ключу
+
+	void Puzir(string *_key, T* _data, int _length);
+	void Vstavka(string* _key, T* _data, int _length);
+	void SortQuick(string* _key, T* _data, T first, T last);
 };
 
 // ---------------------------------------------------------------------------
@@ -55,7 +59,7 @@ TSortTable<T>::TSortTable(int _length)
 
 // ---------------------------------------------------------------------------
 template<class T>
-TSortTable<T>::TSortTable(string* _keys, T* _data, int _length)
+TSortTable<T>::TSortTable(string* _keys, T* _data, int _length, int numOfSort)
 {
   if (_length <= 0)
     throw Exception("Error size\n");
@@ -63,6 +67,23 @@ TSortTable<T>::TSortTable(string* _keys, T* _data, int _length)
     length = _length;
     count = 0;
     mas = new TSortElem<T>[length];
+
+		switch (numOfSort)
+		{
+		case 1:
+			Puzir(_keys, _data, _length);
+			break;
+		case 2:
+			Vstavka(_keys, _data, _length);
+			break;
+		case 3:
+			SortQuick(_keys, _data, _data[0], _data[_length]);
+			break;
+		default:
+			throw Exception("Error number of sort");
+			break;
+		}
+
     for (int i = 0; i < length; i++)
       Put(_keys[i], _data[i]);
 }
@@ -215,7 +236,7 @@ void TSortTable<T>::Resize(int _length)
   length = _length;
 }
 
-// ---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 template<class T>
 T& TSortTable<T>::operator[](string _key)
 {
@@ -226,4 +247,84 @@ T& TSortTable<T>::operator[](string _key)
     return mas[count - 1].GetDataAddress();
   }
   return tmp.GetDataAddress();
+}
+
+//---------------------------------------------------------------------------
+template<class T>
+void TSortTable<T>::Puzir(string *_key, T *_data, int _length)
+{
+	T tmp = 0;
+	string temp;
+	for (int i = 1; i < _length; i++)
+		for (int j = i; j >= 0; j--)
+		{
+			if (_data[j] < _data[j - 1])
+			{
+				tmp = _data[j];
+				_data[j] = _data[j - 1];
+				_data[j - 1] = tmp;
+
+				temp = _key[j];
+				_key[j] = _key[j - 1];
+				_key[j - 1] = temp;
+			}
+			else break;
+		}
+}
+
+//---------------------------------------------------------------------------
+template<class T>
+void TSortTable<T>::Vstavka(string* _key, T* _data, int _length)
+{
+	int ind;
+	T tmp, min;
+	string temp;
+	for (int i = 0; i < _length - 1; i++)
+	{
+		min = _data[i]; ind = i;
+		for (int j = i + 1; j < _length; j++)
+			if (min > _data[j])
+			{
+				min = _data[j];
+				ind = j;
+			}
+		tmp = _data[i];
+		_data[i] = _data[ind];
+		_data[ind] = tmp;
+
+		temp = _key[i];
+		_key[i] = _key[ind];
+		_key[ind] = temp;
+	}
+}
+
+//---------------------------------------------------------------------------
+template<class T>
+void TSortTable<T>::SortQuick(string* _key, T* _data, T first, T last)
+{
+	if (first < last)
+	{
+		T l = first, r = last;
+		T mid = _data[(l + r) / 2];
+		do
+		{
+			while (_data[l] < mid) l++;
+			while (_data[r] > mid) r--;
+			if (l <= r)
+			{
+				T tmp = _data[l];
+				_data[l] = _data[r];
+				_data[r] = tmp;
+
+				string temp = _key[l];
+				_key[l] = _key[r];
+				_key[r] = temp;
+
+				l++;
+				r--;
+			}
+		} while (l <= r);
+		SortQuick(_key, _data, first, r);
+		SortQuick(_key, _data, l, last);
+	}
 }

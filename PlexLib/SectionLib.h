@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "PointLib.h"
 
 using namespace std;
 

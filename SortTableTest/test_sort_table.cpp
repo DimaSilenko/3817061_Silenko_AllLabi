@@ -55,7 +55,7 @@ TEST(SortElem, can_assign_elem)
 }
 
 // ---------------------------------------------------------------------------
-TEST(SortTable, can_create_table_and_fill_table)
+TEST(SortTable, can_create_table_and_sort_bubble)
 {
   string* keys;
   int* data;
@@ -68,7 +68,55 @@ TEST(SortTable, can_create_table_and_fill_table)
   keys[4] = "five";
   for (int i = 0; i < 5; i++)
     data[i] = i;
-  ASSERT_NO_THROW(TSortTable<int> table(keys, data, 5));
+  ASSERT_NO_THROW(TSortTable<int> table(keys, data, 5, 1));
+}
+
+TEST(SortTable, can_create_table_and_sort_insert)
+{
+	string* keys;
+	int* data;
+	keys = new string[5];
+	data = new int[5];
+	keys[0] = "one";
+	keys[1] = "two";
+	keys[2] = "three";
+	keys[3] = "four";
+	keys[4] = "five";
+	for (int i = 0; i < 5; i++)
+		data[i] = i;
+	ASSERT_NO_THROW(TSortTable<int> table(keys, data, 5, 2));
+}
+
+TEST(SortTable, can_create_table_and_sort_quicksort)
+{
+	string* keys;
+	int* data;
+	keys = new string[5];
+	data = new int[5];
+	keys[0] = "one";
+	keys[1] = "two";
+	keys[2] = "three";
+	keys[3] = "four";
+	keys[4] = "five";
+	for (int i = 0; i < 5; i++)
+		data[i] = i;
+	ASSERT_NO_THROW(TSortTable<int> table(keys, data, 5, 3));
+}
+
+TEST(SortTable, cant_create_table_and_sort_with_random_number)
+{
+	string* keys;
+	int* data;
+	keys = new string[5];
+	data = new int[5];
+	keys[0] = "one";
+	keys[1] = "two";
+	keys[2] = "three";
+	keys[3] = "four";
+	keys[4] = "five";
+	for (int i = 0; i < 5; i++)
+		data[i] = i;
+	ASSERT_ANY_THROW(TSortTable<int> table(keys, data, 5, 10));
 }
 
 // ---------------------------------------------------------------------------

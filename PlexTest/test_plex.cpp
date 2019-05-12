@@ -45,6 +45,22 @@ TEST(SectionLib, can_copy_section)
   ASSERT_NO_THROW (TSection l(h));
 }
 
+TEST(CircleLib, can_create_circle)
+{
+	TPoint m(1, 5);
+	double rad = 3;
+	ASSERT_NO_THROW(TCircle c(m, rad));
+}
+
+TEST(CircleLib, can_copy_circle)
+{
+	TPoint m(1, 1);
+	double rad = 3;
+	TCircle c1(m, rad);
+
+	ASSERT_NO_THROW(TCircle c2(c1));
+}
+
 TEST(PlexLib, can_create_default_plex)
 {
   ASSERT_NO_THROW (TPlex s);
@@ -84,5 +100,14 @@ TEST (PlexLib, can_add_point)
   TPoint A, B(7,4), C(0,15);
   TPlex P(&A, &B);
   ASSERT_NO_THROW (P.Add(&A, &C));
+}
+
+TEST(PlexLib, can_add_circle)
+{
+	TPoint mid(0, 0), A(1,1), B(2,2), C(3,3);
+	TCircle cir(mid, 2);
+	TPlex P(&A, &C);
+
+	ASSERT_NO_THROW(P.Add(&cir.GetMid(), cir.GetRadius(), &C));
 }
 

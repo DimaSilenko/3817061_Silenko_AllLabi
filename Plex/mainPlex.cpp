@@ -1,4 +1,3 @@
-
 #include "PlexLib.h"
 #include <iostream>
 #include <locale>
@@ -10,6 +9,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 
 	int p1 = 0, p2 = 0;
+	double rad;
 	TPoint _p1, _p2, _p3(15, 25), _p4(1, 18), _p5;
 
 	cout << "Введите первую точку:\n";
@@ -33,8 +33,15 @@ int main()
 	AB.show();
 	cout << "\n\n\n";
 
-	cout << "Точка _p3 по умолчанию с координатами:\n";
-	_p3.show();
+	cout << "Точка _p4 по умолчанию с координатами:\n";
+	_p4.show();
+
+	cout << "Введите радиус круга:\n";
+	cin >> rad;
+	cout << "Получили круг:\n";
+	TCircle cir(_p4, rad);
+	cir.Show();
+
 	cout << "\n\n\n";
 
 
@@ -49,6 +56,9 @@ int main()
 	cout << "В плекс добавлена точка (1, 18)\n";
 	P2.Add(&_p3, &_p4);
 
+	cout << "В плекс добавлен введенный вами круг\n";
+	P2.Add(&cir.GetMid(), cir.GetRadius(), &_p3);
+
 	cout << "Введите точку:\n";
 	cin >> p1 >> p2;
 
@@ -56,10 +66,12 @@ int main()
 	_p5.SetX(p1);
 	_p5.SetY(p2);
 
+	cout << "\n\n\n";
+
 	P2.Add(&_p2, &_p5);
 	cout << "Получился плекс: \n";
 
-	P2.show();
+	P2.Show();
 	cout << "\n\n\n";
 
 	return 0;
