@@ -108,6 +108,6 @@ TEST(PlexLib, can_add_circle)
 	TCircle cir(mid, 2);
 	TPlex P(&A, &C);
 
-	ASSERT_NO_THROW(P.Add(&cir.GetMid(), cir.GetRadius(), &C));
+	ASSERT_NO_THROW(P.Add(&mid, 2, &C));
 }
 
